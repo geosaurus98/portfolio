@@ -15,9 +15,26 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "George Johnson — Mechatronics Engineer",
+  metadataBase: new URL("https://georgejohnson.dev"),
+  title: {
+    default: "George Johnson — Mechatronics Engineer",
+    template: "%s — George Johnson",
+  },
   description:
     "Final-year Mechatronics Engineering student at the University of Canterbury. Embedded systems, robotics, and control engineering.",
+  openGraph: {
+    type: "website",
+    siteName: "George Johnson",
+    title: "George Johnson — Mechatronics Engineer",
+    description:
+      "Final-year Mechatronics Engineering student at the University of Canterbury. Embedded systems, robotics, and control engineering.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "George Johnson — Mechatronics Engineer",
+    description:
+      "Final-year Mechatronics Engineering student at the University of Canterbury. Embedded systems, robotics, and control engineering.",
+  },
 };
 
 export default function RootLayout({

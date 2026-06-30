@@ -1,3 +1,7 @@
+import type { StateDiagramData } from "@/components/StateDiagram";
+
+export type Metric = { label: string; value: string };
+
 export type Project = {
   id: string;
   title: string;
@@ -14,6 +18,9 @@ export type ProjectDetail = {
   highlights: string[];
   challenge: string;
   outcome: string;
+  metrics?: Metric[];
+  diagram?: StateDiagramData;
+  video?: { src: string; caption?: string };
   images?: { alt: string; caption?: string }[];
 };
 
@@ -40,6 +47,12 @@ export const projects: Project[] = [
         "The hardest part was coordinating across three very different domains simultaneously — firmware, electronics, and mechanical — where a decision in one layer directly constrains the others. Getting reliable peripheral communication on a new platform required careful register-level debugging and iterative validation against the hardware datasheet.",
       outcome:
         "An integrated prototype combining the target sensing and imaging hardware, with firmware providing stable peripheral control and device management. The project is ongoing through 2025 with Trimble as the industry sponsor.",
+      metrics: [
+        { label: "Platform", value: "i.MX8M Plus" },
+        { label: "OS", value: "Debian Bookworm" },
+        { label: "Interfaces", value: "I2C · SPI · UART" },
+        { label: "Status", value: "In Progress" },
+      ],
       images: [
         { alt: "System architecture diagram", caption: "High-level hardware architecture" },
         { alt: "Prototype hardware assembly", caption: "Prototype during bench testing" },
@@ -69,6 +82,26 @@ export const projects: Project[] = [
         "Getting robust autonomous behaviour in an uncontrolled physical environment was the core challenge. Sensor noise, inconsistent lighting, and edge cases in the obstacle detection all had to be handled gracefully. The robot couldn't hesitate or get stuck mid-run, so every state transition had to be validated and fallback behaviour defined.",
       outcome:
         "First place at the UC RoboCup Competition. The robot completed all required tasks reliably across multiple competition runs, demonstrating robust sensor fusion and decision-making under real-world conditions.",
+      metrics: [
+        { label: "Result", value: "1st Place" },
+        { label: "MCU", value: "Teensy 4.0" },
+        { label: "Clock", value: "600 MHz" },
+        { label: "Sensors", value: "5 types" },
+      ],
+      diagram: {
+        title: "Autonomous Decision State Machine",
+        nodes: [
+          { id: "init",     label: "INIT" },
+          { id: "nav",      label: "NAVIGATE" },
+          { id: "detect",   label: "DETECT" },
+          { id: "approach", label: "APPROACH" },
+          { id: "collect",  label: "COLLECT" },
+        ],
+      },
+      video: {
+        src: "/projects/robocup/video.mp4",
+        caption: "Clanker completing the competition course",
+      },
       images: [
         { alt: "Clanker robot on competition track", caption: "Clanker navigating the competition course" },
         { alt: "Electronics and sensor layout", caption: "Teensy 4.0 and sensor array" },
@@ -96,6 +129,12 @@ export const projects: Project[] = [
         "Implementing inverse kinematics that correctly accounts for physical servo limits and avoids singularities. Joint angle solutions also needed to be mapped to real servo PWM values with calibration offsets, which required careful measurement and iterative adjustment.",
       outcome:
         "Fully functional pick-and-place arm with smooth Bluetooth-controlled motion. End-effector positioning accuracy was sufficient for reliable object manipulation within the arm's workspace.",
+      metrics: [
+        { label: "DOF", value: "4-DOF" },
+        { label: "MCU", value: "Arduino" },
+        { label: "Control", value: "Bluetooth" },
+        { label: "IK method", value: "Analytical" },
+      ],
       images: [
         { alt: "Robotic arm full assembly", caption: "Completed 4-DOF arm" },
         { alt: "Arm performing pick-and-place", caption: "Pick-and-place demonstration" },
@@ -124,9 +163,24 @@ export const projects: Project[] = [
         "Designing the FSM to correctly handle all edge cases — false starts (pressing before the stimulus), held buttons, and display multiplexing timing — while keeping the logic clean and synthesisable. The 7-segment multiplexer also needed careful timing to avoid visible flicker.",
       outcome:
         "Stable operation with sub-millisecond timing resolution, validated across repeated measurements. The system correctly rejects false starts and displays clean results on the 7-segment display.",
+      metrics: [
+        { label: "Platform", value: "Artix-7" },
+        { label: "Clock", value: "100 MHz" },
+        { label: "Resolution", value: "<1 ms" },
+        { label: "FSM states", value: "5" },
+      ],
+      diagram: {
+        title: "Reaction Timer FSM",
+        nodes: [
+          { id: "idle",      label: "IDLE" },
+          { id: "wait",      label: "WAIT" },
+          { id: "stimulus",  label: "STIMULUS" },
+          { id: "measuring", label: "MEASURING" },
+          { id: "display",   label: "DISPLAY" },
+        ],
+      },
       images: [
         { alt: "Nexys-4 DDR board running the timer", caption: "Timer running on Nexys-4 DDR" },
-        { alt: "FSM state diagram", caption: "Finite state machine design" },
       ],
     },
   },
@@ -150,6 +204,22 @@ export const projects: Project[] = [
         "Exhaustively handling edge cases in the call scheduling logic: simultaneous up/down calls at the same floor, calls arriving while the elevator is in motion, and power-up initialisation to a known state. Every path through the logic had to be validated independently.",
       outcome:
         "Fully functional elevator system validated across all specified edge cases and fault conditions, including door obstruction, simultaneous floor calls, and power-up behaviour.",
+      metrics: [
+        { label: "Languages", value: "LL + ST" },
+        { label: "Platform", value: "Real PLC" },
+        { label: "Edge cases", value: "All validated" },
+        { label: "Interlocks", value: "Safety-rated" },
+      ],
+      diagram: {
+        title: "Elevator Control State Machine",
+        nodes: [
+          { id: "idle",     label: "IDLE" },
+          { id: "up",       label: "MOVING UP" },
+          { id: "down",     label: "MOVING DOWN" },
+          { id: "door",     label: "DOOR OPEN" },
+          { id: "close",    label: "DOOR CLOSE" },
+        ],
+      },
       images: [
         { alt: "PLC wiring and I/O configuration", caption: "PLC hardware setup" },
         { alt: "Ladder Logic program excerpt", caption: "Call prioritisation logic" },
@@ -178,6 +248,12 @@ export const projects: Project[] = [
         "The entropy-based strategy requires calculating expected information gain across all remaining candidates for every possible guess, which is computationally expensive. Optimising this to run in reasonable time while maintaining accuracy required careful implementation of the filtering and scoring logic.",
       outcome:
         "Consistent sub-4-turn average solve rate with the entropy strategy. The benchmarking framework clearly shows the performance gap between strategies and validates the optimal opening word choices.",
+      metrics: [
+        { label: "Avg solve", value: "~3.7 turns" },
+        { label: "Word list", value: "12,971 words" },
+        { label: "Strategies", value: "3 modes" },
+        { label: "Language", value: "Python" },
+      ],
       images: [
         { alt: "Solver benchmark output", caption: "Strategy comparison benchmark results" },
         { alt: "Interactive solve session", caption: "Assisted solve in interactive mode" },
@@ -206,6 +282,22 @@ export const projects: Project[] = [
         "Keeping the two boards synchronised over serial without a dedicated handshake protocol required careful framing of messages and timeout handling. The LED matrix also had very limited display resolution, so the UI had to communicate game state clearly within a 5×5 grid.",
       outcome:
         "Fully playable two-player game demonstrated on real hardware. Ship placement, attacks, hit/miss feedback, and win detection all work correctly across both boards.",
+      metrics: [
+        { label: "Players", value: "2-player" },
+        { label: "Display", value: "5×5 LED" },
+        { label: "Comms", value: "UART serial" },
+        { label: "Language", value: "C" },
+      ],
+      diagram: {
+        title: "Game State Machine",
+        nodes: [
+          { id: "place",    label: "PLACE SHIPS" },
+          { id: "pturn",    label: "MY TURN" },
+          { id: "wait",     label: "WAIT ACK" },
+          { id: "oturn",    label: "THEIR TURN" },
+          { id: "over",     label: "GAME OVER" },
+        ],
+      },
       images: [
         { alt: "Two UCFK4 boards playing Battleship", caption: "Two boards connected for multiplayer" },
         { alt: "LED matrix game display", caption: "5×5 grid during active game" },
