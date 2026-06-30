@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# George Johnson — Portfolio Website
 
-## Getting Started
+Personal engineering portfolio built with Next.js 15, TypeScript, and Tailwind CSS v4.
 
-First, run the development server:
+## Running locally
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```powershell
+# SSL cert workaround required on some networks
+$env:NODE_TLS_REJECT_UNAUTHORIZED = "0"
+npx next dev -p 3001
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3001](http://localhost:3001).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> If port 3001 is taken, Next.js will pick the next available port — check the terminal output.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Checklist — things still to do
 
-To learn more about Next.js, take a look at the following resources:
+### Must-haves (do these before sharing the link)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [ ] **Deploy to Vercel** — push to GitHub, import the repo at vercel.com/new, done. Free tier is fine.
+- [ ] **Add CV PDF** — drop `George_Johnson_CV.pdf` into `public/`. The download button on the hero 404s until this exists.
+- [ ] **Add project photos** — drop images into `public/projects/<project-id>/` and update the `images` array in `src/data/projects.ts`. Even one real photo per project makes a big difference.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### High value for engineering roles
 
-## Deploy on Vercel
+- [ ] **Contact form** — the contact page is static info only. Add a working form with [Formspree](https://formspree.io) (free tier, no backend needed).
+- [ ] **Custom favicon** — replace the default Next.js icon. A simple monogram SVG in terminal green. Put it in `public/favicon.ico` (or `public/icon.svg` for Next.js App Router auto-detection).
+- [ ] **"Available from" signal** — add a one-liner to the hero: *"Available for graduate roles from [month]"*. Edit `src/app/page.tsx`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Polish
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [ ] **Custom 404 page** — create `src/app/not-found.tsx`. Currently shows the Next.js default.
+- [ ] **Analytics** — enable Vercel Analytics (free, one line of code) before you start sharing the link so you can see who's visiting.
+- [ ] **Sitemap** — install `next-sitemap`, add a `next-sitemap.config.js`, and add `postbuild` to `package.json`. Helps Google index the site.
+
+### Nice to have
+
+- [ ] **RoboCup video** — drop the video file into `public/projects/robocup/` named `video.mp4`. The player is already wired up in the data.
+- [ ] **Custom domain** — after you have the role, or if you already own a domain.
+- [ ] **About page** — only worth adding if you have more to say than the hero covers.
+
+---
+
+## Project structure
+
+```text
+src/
+  app/                  # Next.js App Router pages
+    page.tsx            # Home / hero + skills
+    projects/
+      page.tsx          # Project card grid
+      [id]/
+        page.tsx        # Individual project detail
+    experience/
+      page.tsx          # Work + education timeline
+    contact/
+      page.tsx          # Contact + CV download
+  components/
+    Nav.tsx             # Fixed nav, mobile menu, theme toggle
+    ThemeProvider.tsx   # Dark/light mode context + localStorage
+    AnimateIn.tsx       # IntersectionObserver scroll reveal
+    StateDiagram.tsx    # SVG FSM state machine renderer
+  data/
+    projects.ts         # All project content — edit this to update projects
+    experience.ts       # Work history and education
+    skills.ts           # Skills by category
+public/
+  George_Johnson_CV.pdf         # <-- add this
+  projects/
+    robocup/
+      video.mp4                 # <-- add this
+      *.jpg / *.png             # project photos
+    <other-project-id>/
+      *.jpg / *.png
+```
+
+## Adding a new project
+
+1. Add an entry to the `projects` array in `src/data/projects.ts` with a unique `id`.
+2. Fill in the `detail` object: `overview`, `highlights`, `challenge`, `outcome`, plus optional `metrics`, `diagram`, `video`, and `images`.
+3. Drop any photos into `public/projects/<id>/` and reference them in `images`.
+4. The project card and detail page are generated automatically — no other files to touch.
+
+## Tech stack
+
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4 (CSS-based config, no `tailwind.config.ts`)
+- **Theming:** CSS custom properties on `data-theme` attribute, persisted via localStorage
+- **Deployment target:** Vercel (free tier)
