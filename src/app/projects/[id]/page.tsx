@@ -2,6 +2,7 @@ import { projects } from "@/data/projects";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
+import StateDiagram from "@/components/StateDiagram";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ id: p.id }));
@@ -108,6 +109,50 @@ export default async function ProjectPage({
               </ul>
             </section>
 
+            {detail.metrics && detail.metrics.length > 0 && (
+              <section className="fade-up fade-delay-3">
+                <SectionHeader label="At a Glance" />
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {detail.metrics.map((m) => (
+                    <div
+                      key={m.label}
+                      className="border border-[var(--border)] bg-[var(--surface)] rounded-lg p-4 text-center"
+                    >
+                      <p className="font-mono text-xl font-bold text-[var(--green)] mb-1">{m.value}</p>
+                      <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest">{m.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {detail.diagram && (
+              <section className="fade-up fade-delay-3">
+                <SectionHeader label="State Machine" />
+                <StateDiagram data={detail.diagram} />
+              </section>
+            )}
+
+            {detail.video && (
+              <section className="fade-up fade-delay-3">
+                <SectionHeader label="Video" />
+                <div className="rounded-lg overflow-hidden border border-[var(--border)] bg-[var(--surface)]">
+                  <video
+                    src={detail.video.src}
+                    controls
+                    preload="metadata"
+                    className="w-full"
+                    style={{ display: "block" }}
+                  />
+                </div>
+                {detail.video.caption && (
+                  <p className="font-mono text-xs text-[var(--text-muted)] mt-2 text-center">
+                    {detail.video.caption}
+                  </p>
+                )}
+              </section>
+            )}
+
             {detail.images && detail.images.length > 0 && (
               <section className="fade-up fade-delay-3">
                 <SectionHeader label="Images" />
@@ -135,7 +180,7 @@ export default async function ProjectPage({
               </section>
             )}
 
-            <section className="fade-up fade-delay-4">
+            <section className="fade-up fade-delay-5">
               <SectionHeader label="Challenge & Outcome" />
               <div className="space-y-6">
                 <div className="border-l-2 border-[var(--green-40)] pl-5">
