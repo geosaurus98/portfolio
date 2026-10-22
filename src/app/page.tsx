@@ -1,6 +1,7 @@
 import Link from "next/link";
 import AnimateIn from "@/components/AnimateIn";
 import { skills } from "@/data/skills";
+import { projects } from "@/data/projects";
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
           </h1>
 
           <div className="mt-6 mb-8 flex flex-wrap gap-2 fade-up fade-delay-2">
-            {["Mechatronics Engineer", "Embedded Systems", "Robotics", "Control Engineering"].map((tag) => (
+            {["Mechatronics Engineering", "Embedded Linux", "Robotics", "Control Systems"].map((tag) => (
               <span
                 key={tag}
                 className="font-mono text-xs px-3 py-1 border border-[var(--border)] text-[var(--green)] rounded"
@@ -31,11 +32,17 @@ export default function Home() {
             ))}
           </div>
 
-          <p className="text-[var(--text-2)] text-lg max-w-2xl leading-relaxed mb-10 fade-up fade-delay-3">
-            Final-year Mechatronics Engineering student at the{" "}
-            <span className="text-[var(--text-body)]">University of Canterbury</span>,
-            Christchurch, NZ. Building embedded systems, autonomous robots, and
-            firmware that works in the real world.
+          <p className="text-[var(--text-2)] text-lg max-w-2xl leading-relaxed mb-5 fade-up fade-delay-3">
+            I build software that connects sensors, machines, and people — from
+            microcontroller firmware to embedded Linux systems.
+          </p>
+          <p className="text-[var(--text-2)] max-w-2xl leading-relaxed mb-10 fade-up fade-delay-3">
+            I’m a final-year Mechatronics Engineering student at the{" "}
+            <span className="text-[var(--text-body)]">University of Canterbury</span>{" "}
+            in Christchurch, New Zealand. My projects span autonomous robotics,
+            STM32 firmware, FPGA design, and a C-based surveying accessory.
+            I enjoy modular design, practical testing, and working through
+            hardware–software integration problems.
           </p>
 
           <div className="flex flex-wrap gap-3 fade-up fade-delay-4">
@@ -52,18 +59,17 @@ export default function Home() {
               Experience
             </Link>
             <a
-              href="/George_Johnson_CV.pdf"
-              download
+              href="mailto:george.johnson@outlook.co.nz?subject=CV%20request"
               className="font-mono text-sm px-5 py-3 border border-[var(--border)] text-[var(--text-body)] rounded hover:border-[var(--green)] hover:text-[var(--green)] transition-colors"
             >
-              Download CV ↓
+              Request CV ↗
             </a>
           </div>
 
           <div className="mt-20 pt-8 border-t border-[var(--border)] fade-up fade-delay-5">
             <p className="font-mono text-xs text-[var(--text-muted)]">
               <span className="text-[var(--green)]">●</span>{" "}
-              Available for summer internships — Christchurch, NZ ·{" "}
+              Based in Christchurch, New Zealand ·{" "}
               <a
                 href="https://github.com/geosaurus98"
                 target="_blank"
@@ -74,6 +80,44 @@ export default function Home() {
               </a>
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="border-t border-[var(--border)] px-6 py-24">
+        <div className="max-w-5xl mx-auto">
+          <AnimateIn>
+            <p className="font-mono text-xs text-[var(--green)] uppercase tracking-widest mb-4">
+              Selected engineering work
+            </p>
+            <h2 className="text-2xl font-bold text-[var(--text)] mb-4">
+              From sensor readings to system behaviour
+            </h2>
+            <p className="text-[var(--text-2)] max-w-2xl leading-relaxed mb-10">
+              Three projects showing how I approach firmware architecture,
+              control, and integration — including the constraints and what
+              testing revealed.
+            </p>
+          </AnimateIn>
+          <div className="grid md:grid-cols-3 gap-6">
+            {projects.filter((project) => project.featured).map((project, i) => (
+              <AnimateIn key={project.id} delay={i * 60}>
+                <Link
+                  href={`/projects/${project.id}`}
+                  className="block h-full border border-[var(--border)] rounded-lg p-5 bg-[var(--surface)] hover:border-[var(--green)] transition-colors"
+                >
+                  <p className="font-mono text-xs text-[var(--green)] mb-3">
+                    {project.tags.slice(0, 2).join(" · ")}
+                  </p>
+                  <h3 className="font-semibold text-[var(--text)] mb-3">{project.title}</h3>
+                  <p className="text-sm text-[var(--text-2)] leading-relaxed mb-5">{project.description}</p>
+                  <span className="font-mono text-xs text-[var(--green)]">Read case study →</span>
+                </Link>
+              </AnimateIn>
+            ))}
+          </div>
+          <Link href="/projects" className="inline-block mt-8 font-mono text-sm text-[var(--green)] hover:underline">
+            Explore all projects →
+          </Link>
         </div>
       </section>
 

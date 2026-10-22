@@ -97,6 +97,13 @@ export default async function ProjectPage({
               <p className="text-[var(--text-2)] leading-relaxed">{detail.overview}</p>
             </section>
 
+            {detail.contribution && (
+              <section className="fade-up fade-delay-2">
+                <SectionHeader label="My Contribution" />
+                <p className="text-[var(--text-2)] leading-relaxed">{detail.contribution}</p>
+              </section>
+            )}
+
             <section className="fade-up fade-delay-2">
               <SectionHeader label="Highlights" />
               <ul className="space-y-3">

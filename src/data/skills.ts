@@ -1,7 +1,7 @@
 export const skills = [
   {
     category: "Firmware & Embedded",
-    items: ["C/C++", "Arduino", "Teensy", "ARM/AVR", "Real-time Systems", "Sensor Integration", "Interrupts/Timers"],
+    items: ["C/C++", "STM32", "Arduino", "Teensy", "ARM/AVR", "Real-time Systems", "Sensor Integration", "Interrupts/Timers"],
   },
   {
     category: "Interfaces & Comms",
@@ -9,11 +9,11 @@ export const skills = [
   },
   {
     category: "Software & Tooling",
-    items: ["Python", "Git/GitHub", "MATLAB", "Simulink", "VBA", "Linux"],
+    items: ["Python", "PlatformIO", "Git/GitHub", "MATLAB", "Simulink", "VBA", "Linux"],
   },
   {
     category: "Digital & FPGA",
-    items: ["VHDL", "FPGA", "PCB Design", "Altium/KiCad", "Soldering"],
+    items: ["VHDL", "FPGA", "Vivado", "PCB Design", "Altium/KiCad", "Soldering"],
   },
   {
     category: "Mechatronics & Mfg",
