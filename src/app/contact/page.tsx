@@ -17,6 +17,11 @@ const contactItems = [
     href: "https://github.com/geosaurus98",
   },
   {
+    label: "LinkedIn",
+    value: "Connect on LinkedIn",
+    href: "https://www.linkedin.com/in/george-johnson-nz",
+  },
+  {
     label: "Location",
     value: "Christchurch, New Zealand",
     href: null,
@@ -36,25 +41,24 @@ export default function ContactPage() {
           Get in touch
         </h1>
         <p className="text-[var(--text-2)] mb-10 fade-up fade-delay-2">
-          Open to summer internships, graduate roles, and interesting engineering problems.
+          Get in touch about embedded systems, robotics, graduate opportunities, or an engineering project. I’m based in Christchurch, New Zealand.
         </p>
 
-        {/* CV Download */}
+        {/* CV request */}
         <div className="mb-8 fade-up fade-delay-3">
           <a
-            href="/George_Johnson_CV.pdf"
-            download
+            href="mailto:george.johnson@outlook.co.nz?subject=CV%20request"
             className="flex items-center gap-3 w-full p-4 border border-[var(--green-40)] rounded-lg bg-[var(--green-05)] hover:bg-[var(--green-10)] hover:border-[var(--green-70)] transition-colors group"
           >
             <span className="text-[var(--green)]">
-              <DownloadIcon />
+              <MailIcon />
             </span>
             <div>
-              <p className="font-mono text-sm font-semibold text-[var(--green)]">Download CV</p>
-              <p className="font-mono text-xs text-[var(--text-muted)]">George_Johnson_CV.pdf</p>
+              <p className="font-mono text-sm font-semibold text-[var(--green)]">Request my CV</p>
+              <p className="font-mono text-xs text-[var(--text-muted)]">Email me for a current copy</p>
             </div>
             <span className="ml-auto font-mono text-xs text-[var(--text-muted)] group-hover:text-[var(--green)] transition-colors">
-              ↓
+              ↗
             </span>
           </a>
         </div>
@@ -88,12 +92,11 @@ export default function ContactPage() {
   );
 }
 
-function DownloadIcon() {
+function MailIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-      <polyline points="7 10 12 15 17 10" />
-      <line x1="12" y1="15" x2="12" y2="3" />
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3 6 9 7 9-7" />
     </svg>
   );
 }
