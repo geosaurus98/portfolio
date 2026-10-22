@@ -4,14 +4,20 @@ import { projects } from "@/data/projects";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export async function generateImageMetadata({
+export function generateImageMetadata({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: { id?: string };
 }) {
-  const { id } = await params;
-  const project = projects.find((p) => p.id === id);
-  return [{ id, alt: project?.title ?? "Project — George Johnson" }];
+  const project = projects.find((p) => p.id === params.id);
+  // One image per project route. Its variant ID must also exist during
+  // build-time collection, before a concrete project parameter is known.
+  return [{
+    id: "default",
+    alt: project?.title ?? "Project — George Johnson",
+    size,
+    contentType,
+  }];
 }
 
 export default async function Image({

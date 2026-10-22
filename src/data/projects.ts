@@ -15,6 +15,7 @@ export type Project = {
 
 export type ProjectDetail = {
   overview: string;
+  contribution?: string;
   highlights: string[];
   challenge: string;
   outcome: string;
@@ -27,86 +28,95 @@ export type ProjectDetail = {
 export const projects: Project[] = [
   {
     id: "trimble-surveying",
-    title: "Electronic Surveying Device",
-    subtitle: "Final-year project — Industry sponsor: Trimble",
-    description:
-      "Developing embedded firmware for a handheld surveying prototype involving sensing and imaging hardware. Responsible for microcontroller-based device control, peripheral integration, hardware-software debugging, and prototype testing across firmware, electronics, and mechanical constraints.",
-    tags: ["C/C++", "Embedded", "Raspberry Pi", "I2C", "SPI", "Linux", "Firmware"],
-    featured: true,
+    title: "Horus — Embedded Linux Surveying Accessory",
+    subtitle: "2026 final-year project · Industry sponsor: Trimble",
+    description: "A C userspace daemon for a surveying accessory on an i.MX 8M Plus platform, coordinating sensing, wireless communication, and camera streaming. The project combined firmware architecture with hardware integration and bench debugging.",
+    tags: [
+      "C",
+      "Embedded Linux",
+      "Yocto",
+      "UART",
+      "SPI",
+      "Bluetooth",
+      "GStreamer"
+    ],
     detail: {
-      overview:
-        "The Trimble Horus project is my final-year BE(Hons) capstone, developed in partnership with Trimble — a global leader in surveying and positioning technology. The goal is to design and build a compact handheld accessory that integrates sensing, imaging, and wireless communications into a single field-deployable device. My role spans the full embedded stack: from low-level peripheral drivers through to system-level integration and prototype validation.",
+      overview: "Horus is a University of Canterbury team capstone supported by Trimble. The accessory brings together a laser rangefinder, IMU, camera, and a tablet connection on a custom carrier board with a Variscite DART-MX8M-PLUS system-on-module. The production platform runs Yocto Scarthgap Linux; Debian Bookworm was used during development.",
       highlights: [
-        "Firmware development on a Variscite DART-MX8M-Plus (i.MX8M Plus) running Debian Bookworm Linux",
-        "Peripheral integration across I2C, SPI, UART, and GPIO — camera, IMU, rangefinder, battery management",
-        "Research and evaluation of laser rangefinder modules (Hilti LDM, LightWare SF11/C) against project requirements",
-        "Hardware-software debugging using oscilloscope, logic analyser, and serial console",
-        "Working within mechanical and electronics constraints to support a prototype intended for field use",
+        "Rebuilt an existing Python implementation as a modular C userspace daemon managed by systemd.",
+        "Used Linux interfaces including termios for UART, spidev for SPI, and libgpiod for GPIO.",
+        "Developed rangefinder communication, IMU orientation handling, Bluetooth JSON streaming, and a WebSocket tablet link.",
+        "Integrated GStreamer camera-streaming support and board-specific configuration.",
+        "Used regression tests and bench measurements to investigate communication and integration faults."
       ],
-      challenge:
-        "The hardest part was coordinating across three very different domains simultaneously — firmware, electronics, and mechanical — where a decision in one layer directly constrains the others. Getting reliable peripheral communication on a new platform required careful register-level debugging and iterative validation against the hardware datasheet.",
-      outcome:
-        "An integrated prototype combining the target sensing and imaging hardware, with firmware providing stable peripheral control and device management. The project is ongoing through 2025 with Trimble as the industry sponsor.",
+      challenge: "Integration depended on both firmware and a custom PCB. Power-rail faults prevented the camera, laser, and IMU from operating together on the final board, so software development and subsystem checks had to be kept separate from claims about complete system performance.",
+      outcome: "Delivered the C firmware architecture and integration work for the prototype. Hardware faults limited final-board validation: full sensing and imaging operation and the eight-hour runtime target were not demonstrated. The handover records those limits alongside the implementation.",
       metrics: [
-        { label: "Platform", value: "i.MX8M Plus" },
-        { label: "OS", value: "Debian Bookworm" },
-        { label: "Interfaces", value: "I2C · SPI · UART" },
-        { label: "Status", value: "In Progress" },
+        {
+          label: "Platform",
+          value: "i.MX 8M Plus"
+        },
+        {
+          label: "Target OS",
+          value: "Yocto Scarthgap"
+        },
+        {
+          label: "Runtime",
+          value: "Linux + systemd"
+        },
+        {
+          label: "Validation",
+          value: "Partial integration"
+        }
       ],
-      images: [
-        { alt: "System architecture diagram", caption: "High-level hardware architecture" },
-        { alt: "Prototype hardware assembly", caption: "Prototype during bench testing" },
-      ],
+      contribution: "My work focused on laser rangefinder evaluation, firmware architecture, the Python-to-C rebuild, peripheral communication, and hardware–software debugging. The carrier PCB and mechanical assembly were team workstreams."
     },
+    featured: true
   },
   {
     id: "robocup",
     title: "RoboCup Autonomous Robot",
-    subtitle: "1st place — UC RoboCup Competition",
-    description:
-      "Designed and built a tracked autonomous robot (\"Clanker\") using sensor feedback to detect targets and navigate obstacles. Implemented sensor fusion and autonomous decision-making algorithms on a Teensy 4.0 microcontroller.",
-    tags: ["C++", "Teensy 4.0", "Sensor Fusion", "BNO IMU", "VL53L1X", "Robotics"],
-    github: "https://github.com/geosaurus98/RoboCup",
-    featured: true,
+    subtitle: "1st place · UC RoboCup Competition · Team project",
+    description: "Teensy 4.0 firmware for an autonomous collection robot: navigate obstacles, identify metal objects, sort them, and return to base using sensor feedback and layered state machines.",
+    tags: [
+      "C++",
+      "Teensy 4.0",
+      "PID Control",
+      "State Machines",
+      "Sensor Integration"
+    ],
     detail: {
-      overview:
-        "Clanker is a tracked autonomous robot designed to navigate an obstacle course, detect metal targets using inductive sensors and electromagnets, and collect them reliably. Built for the UC RoboCup Competition, the robot runs entirely on a Teensy 4.0 microcontroller with no remote control — all decisions are made onboard using sensor feedback. The team took first place.",
+      overview: "Clanker is a tracked autonomous robot built for the UC RoboCup Competition. A Teensy 4.0 coordinates navigation, object collection, sorting, and return-to-base behaviour. Distance sensors locate obstacles and candidate objects; an inductive sensor classifies metal, and a colour sensor identifies the bases.",
       highlights: [
-        "Tracked drive system for stable navigation over varied terrain",
-        "Sensor fusion combining BNO055 IMU (heading), VL53L1X / VL53L0X ToF distance sensors, and ultrasonic sensors",
-        "TCS34725 colour sensor for target identification",
-        "Autonomous decision-making state machine running on Teensy 4.0 at real-time rates",
-        "Iterative tuning and field testing to achieve reliable performance across repeated runs",
+        "Separated high-level goals, detection states, and drive commands into layered state machines.",
+        "Used BNO055 IMU heading feedback and PID correction for navigation.",
+        "Combined time-of-flight, ultrasonic, inductive, and colour sensing for distinct tasks.",
+        "Coordinated motor outputs, servo sorting arms, and a deposit gate with non-blocking scheduled tasks.",
+        "Added IMU-based stuck detection, escape behaviour, and Bluetooth parameter tuning."
       ],
-      challenge:
-        "Getting robust autonomous behaviour in an uncontrolled physical environment was the core challenge. Sensor noise, inconsistent lighting, and edge cases in the obstacle detection all had to be handled gracefully. The robot couldn't hesitate or get stuck mid-run, so every state transition had to be validated and fallback behaviour defined.",
-      outcome:
-        "First place at the UC RoboCup Competition. The robot completed all required tasks reliably across multiple competition runs, demonstrating robust sensor fusion and decision-making under real-world conditions.",
+      challenge: "Navigation, sensing, and sorting needed to run together without long blocking operations. Breaking the behaviour into scheduled modules made it possible to handle obstacles and collection sequences while keeping control updates responsive.",
+      outcome: "The team placed first at the UC RoboCup Competition. The firmware coordinates autonomous navigation, metal classification, sorting, and homing on one microcontroller. The repository documents the module structure, task intervals, hardware interfaces, and runtime tuning commands.",
       metrics: [
-        { label: "Result", value: "1st Place" },
-        { label: "MCU", value: "Teensy 4.0" },
-        { label: "Clock", value: "600 MHz" },
-        { label: "Sensors", value: "5 types" },
-      ],
-      diagram: {
-        title: "Autonomous Decision State Machine",
-        nodes: [
-          { id: "init",     label: "INIT" },
-          { id: "nav",      label: "NAVIGATE" },
-          { id: "detect",   label: "DETECT" },
-          { id: "approach", label: "APPROACH" },
-          { id: "collect",  label: "COLLECT" },
-        ],
-      },
-      video: {
-        src: "/projects/robocup/video.mp4",
-        caption: "Clanker completing the competition course",
-      },
-      images: [
-        { alt: "Clanker robot on competition track", caption: "Clanker navigating the competition course" },
-        { alt: "Electronics and sensor layout", caption: "Teensy 4.0 and sensor array" },
-      ],
+        {
+          label: "MCU",
+          value: "Teensy 4.0"
+        },
+        {
+          label: "Control",
+          value: "IMU + PID"
+        },
+        {
+          label: "Scheduling",
+          value: "Cooperative"
+        },
+        {
+          label: "Language",
+          value: "C++"
+        }
+      ]
     },
+    github: "https://github.com/geosaurus98/RoboCup",
+    featured: true
   },
   {
     id: "robotic-arm",
@@ -144,51 +154,52 @@ export const projects: Project[] = [
   {
     id: "vhdl-reaction-timer",
     title: "FPGA Reaction Timer",
-    subtitle: "Nexys-4 DDR / Artix-7",
-    description:
-      "Developed a reaction-time measurement system in VHDL on FPGA hardware. Designed a finite state machine, timing logic, and 7-segment display interface. Validated sub-millisecond timing resolution across repeated operation.",
-    tags: ["VHDL", "FPGA", "Digital Design", "FSM", "Nexys-4"],
-    github: "https://github.com/geosaurus98/VHDL-Reaction-Timer",
+    subtitle: "Team project · ENEL373 · Nexys-4 DDR",
+    description: "A VHDL reaction timer with millisecond timing, randomised visual prompts, early-input detection, and minimum, maximum, and average results on a multiplexed seven-segment display.",
+    tags: [
+      "VHDL",
+      "FPGA",
+      "Vivado",
+      "Simulation",
+      "Digital Design"
+    ],
     detail: {
-      overview:
-        "A hardware reaction timer implemented entirely in VHDL on the Digilent Nexys-4 DDR board (Artix-7 FPGA). The system presents a randomised visual stimulus using onboard LEDs, measures the time until the user presses a button, and displays the result on the 7-segment display in milliseconds.",
+      overview: "This team project implements a reaction timer on the Nexys-4 DDR board with an Artix-7 FPGA. Decimal-point prompts turn off at random intervals; the final prompt starts the measurement, and a button press stops it. Results are displayed in milliseconds, with statistics over recent measurements.",
       highlights: [
-        "Finite state machine with states: IDLE → WAIT → STIMULUS → MEASURING → DISPLAY",
-        "Pseudo-random delay generator for unpredictable stimulus timing",
-        "100 MHz clock-based timing logic with sub-millisecond resolution",
-        "Multiplexed 7-segment display driver for 4-digit time readout",
-        "Debounced button input to prevent false triggers",
+        "Connected timing, control, pseudo-random delay, statistics, and display modules in a structural VHDL design.",
+        "Used a parameterised LFSR to vary the delay between visual prompts.",
+        "Computed minimum, maximum, and average values from the last three stored results.",
+        "Converted binary values to BCD and multiplexed the onboard seven-segment display.",
+        "Included module testbenches for binary-to-BCD conversion, multiplexing, decoding, and clock division."
       ],
-      challenge:
-        "Designing the FSM to correctly handle all edge cases — false starts (pressing before the stimulus), held buttons, and display multiplexing timing — while keeping the logic clean and synthesisable. The 7-segment multiplexer also needed careful timing to avoid visible flicker.",
-      outcome:
-        "Stable operation with sub-millisecond timing resolution, validated across repeated measurements. The system correctly rejects false starts and displays clean results on the 7-segment display.",
+      challenge: "The design needed to coordinate prompts, timing, early button presses, and result display in synchronous logic. Separate modules and simulation testbenches made the data conversions and timing behaviour easier to inspect.",
+      outcome: "Implemented the reaction timer and statistics functions in synthesisable VHDL. The repository provides the source modules, testbenches, and Vivado simulation instructions; timing is reported at millisecond resolution.",
       metrics: [
-        { label: "Platform", value: "Artix-7" },
-        { label: "Clock", value: "100 MHz" },
-        { label: "Resolution", value: "<1 ms" },
-        { label: "FSM states", value: "5" },
-      ],
-      diagram: {
-        title: "Reaction Timer FSM",
-        nodes: [
-          { id: "idle",      label: "IDLE" },
-          { id: "wait",      label: "WAIT" },
-          { id: "stimulus",  label: "STIMULUS" },
-          { id: "measuring", label: "MEASURING" },
-          { id: "display",   label: "DISPLAY" },
-        ],
-      },
-      images: [
-        { alt: "Nexys-4 DDR board running the timer", caption: "Timer running on Nexys-4 DDR" },
-      ],
+        {
+          label: "Platform",
+          value: "Artix-7"
+        },
+        {
+          label: "Board clock",
+          value: "100 MHz"
+        },
+        {
+          label: "Resolution",
+          value: "1 ms"
+        },
+        {
+          label: "Statistics",
+          value: "Last 3 results"
+        }
+      ]
     },
+    github: "https://github.com/geosaurus98/VHDL-Reaction-Timer"
   },
   {
     id: "plc-elevator",
     title: "PLC Elevator Control System",
     description:
-      "Programmed elevator logic using Ladder Logic and Structured Text on a real PLC platform. Implemented call prioritisation, floor tracking, and safety interlocks. Validated across all edge cases and fault conditions.",
+      "Programmed elevator logic using Ladder Logic and Structured Text on a real PLC platform. Implemented call prioritisation, floor tracking, and door interlocks.",
     tags: ["PLC", "Ladder Logic", "Structured Text", "Control Systems"],
     detail: {
       overview:
@@ -201,14 +212,14 @@ export const projects: Project[] = [
         "Manual override mode for maintenance",
       ],
       challenge:
-        "Exhaustively handling edge cases in the call scheduling logic: simultaneous up/down calls at the same floor, calls arriving while the elevator is in motion, and power-up initialisation to a known state. Every path through the logic had to be validated independently.",
+        "Call scheduling needs to account for simultaneous up/down requests, new calls while the elevator is moving, and power-up initialisation to a known state. These scenarios make transition logic and interlock behaviour central to the design.",
       outcome:
-        "Fully functional elevator system validated across all specified edge cases and fault conditions, including door obstruction, simultaneous floor calls, and power-up behaviour.",
+        "Implemented elevator call scheduling, floor tracking, and door interlock logic. Relevant validation scenarios include door obstruction, simultaneous calls, and power-up behaviour.",
       metrics: [
         { label: "Languages", value: "LL + ST" },
         { label: "Platform", value: "Real PLC" },
-        { label: "Edge cases", value: "All validated" },
-        { label: "Interlocks", value: "Safety-rated" },
+        { label: "Scheduling", value: "Direction priority" },
+        { label: "Interlocks", value: "Door logic" },
       ],
       diagram: {
         title: "Elevator Control State Machine",
@@ -229,79 +240,134 @@ export const projects: Project[] = [
   {
     id: "wordle-solver",
     title: "Wordle Solver",
-    subtitle: "Multiple strategies + benchmarking",
-    description:
-      "Advanced Python tool for solving Wordle puzzles with multiple solver modes and benchmarking. Analyses optimal opening words and compares algorithm performance across the full word set.",
-    tags: ["Python", "Algorithms"],
-    github: "https://github.com/geosaurus98/Wordle-Solver",
+    subtitle: "Python · Frequency scoring and benchmarking",
+    description: "A Python tool for single and multiple Wordle puzzles, combining letter-frequency scoring, feedback-based candidate filtering, and batch benchmarks with visual analysis.",
+    tags: [
+      "Python",
+      "Algorithms",
+      "NumPy",
+      "pandas",
+      "Matplotlib"
+    ],
     detail: {
-      overview:
-        "A Python Wordle solver that implements multiple solving strategies and a benchmarking framework to compare their performance across the full Wordle word list. The tool supports interactive play mode, auto-solve mode, and batch benchmarking.",
+      overview: "The solver ranks guesses using letter-frequency analysis and reduces the candidate set after each round of green, yellow, and grey feedback. It supports multiple puzzles with shared guesses, sequential solving, and automated testing across a word list.",
       highlights: [
-        "Multiple solver strategies: frequency-based, minimax, and entropy-based",
-        "Benchmarking mode runs the solver against the entire word list and reports average solve depth",
-        "Analysis of optimal opening words by expected information gain",
-        "Interactive mode for assisted manual play",
-        "Clean CLI interface with configurable options",
+        "Separated word loading, scoring, filtering, user interaction, and solver modes into modules.",
+        "Supported both multi-word solving and sequential solving with adaptive feedback.",
+        "Allowed configurable opening-word sets and custom guesses.",
+        "Benchmarked solved counts and average guesses for different opening configurations.",
+        "Generated letter-frequency heatmaps with Matplotlib and Seaborn."
       ],
-      challenge:
-        "The entropy-based strategy requires calculating expected information gain across all remaining candidates for every possible guess, which is computationally expensive. Optimising this to run in reasonable time while maintaining accuracy required careful implementation of the filtering and scoring logic.",
-      outcome:
-        "Consistent sub-4-turn average solve rate with the entropy strategy. The benchmarking framework clearly shows the performance gap between strategies and validates the optimal opening word choices.",
+      challenge: "Each round of feedback must narrow the candidates consistently while keeping scoring separate from interaction. Batch testing makes changes to filtering and opening words easier to compare than a handful of manual games.",
+      outcome: "Delivered an interactive solver and a repeatable benchmarking workflow. Results can be compared by opening configuration using solved counts and average guesses, rather than assuming that a single example represents overall performance.",
       metrics: [
-        { label: "Avg solve", value: "~3.7 turns" },
-        { label: "Word list", value: "12,971 words" },
-        { label: "Strategies", value: "3 modes" },
-        { label: "Language", value: "Python" },
-      ],
-      images: [
-        { alt: "Solver benchmark output", caption: "Strategy comparison benchmark results" },
-        { alt: "Interactive solve session", caption: "Assisted solve in interactive mode" },
-      ],
+        {
+          label: "Scoring",
+          value: "Letter frequency"
+        },
+        {
+          label: "Modes",
+          value: "Multi / sequence / test"
+        },
+        {
+          label: "Interface",
+          value: "CLI"
+        },
+        {
+          label: "Analysis",
+          value: "Benchmarks + heatmaps"
+        }
+      ]
     },
+    github: "https://github.com/geosaurus98/Wordle-Solver"
   },
   {
     id: "battleship",
     title: "Battleship (UCFK4)",
-    subtitle: "UC Fun Kit 4 — embedded C game",
-    description:
-      "Two-player Battleship game built in C for the UC Fun Kit 4 microcontroller. Features LED matrix display, serial communication between two boards, and full game logic including ship placement and hit detection.",
-    tags: ["C", "Embedded", "UCFK4", "Serial Comms"],
-    github: "https://github.com/geosaurus98/battleship-UCFK4",
+    subtitle: "Team project · UC Fun Kit 4",
+    description: "A two-player embedded C game for two UC Fun Kit 4 boards, using infrared communication, navswitch controls, and a 5×7 LED matrix for ship placement and turn-based play.",
+    tags: [
+      "C",
+      "Embedded",
+      "UCFK4",
+      "Infrared",
+      "Game Logic"
+    ],
     detail: {
-      overview:
-        "A fully playable two-player Battleship game running on the UC Fun Kit 4 (UCFK4) microcontroller platform. Both players use separate boards connected via serial UART. The LED matrix serves as the display, with navswitch-based input for ship placement and target selection.",
+      overview: "Two UC Fun Kit 4 boards communicate over infrared to run a Battleship game. Each player places three ships on a 5×7 grid, then selects attack coordinates with the navswitch. LED patterns and text communicate hits, misses, and the final result.",
       highlights: [
-        "Two-board multiplayer via UART serial communication",
-        "5×5 LED matrix display for grid, ships, and hit/miss markers",
-        "Navswitch input for ship placement and attack targeting",
-        "Game state synchronisation between boards over serial",
-        "Clean state machine: PLACE_SHIPS → PLAYER_TURN → OPPONENT_TURN → GAME_OVER",
+        "Used infrared communication between the two aligned boards.",
+        "Provided navswitch navigation, ship rotation, and placement confirmation.",
+        "Handled three ships of lengths two, three, and four cells with no overlapping placement.",
+        "Displayed hit and miss feedback within the limited LED matrix interface.",
+        "Coordinated alternating turns and notified the other board when the game ended."
       ],
-      challenge:
-        "Keeping the two boards synchronised over serial without a dedicated handshake protocol required careful framing of messages and timeout handling. The LED matrix also had very limited display resolution, so the UI had to communicate game state clearly within a 5×5 grid.",
-      outcome:
-        "Fully playable two-player game demonstrated on real hardware. Ship placement, attacks, hit/miss feedback, and win detection all work correctly across both boards.",
+      challenge: "The game needed to communicate placement, targeting, and results through very limited controls and display space. The two boards also had to exchange moves and maintain a consistent turn sequence over infrared.",
+      outcome: "Implemented the game workflow from ship placement through attacks and win/loss feedback. The repository includes setup instructions and the controls for running a two-board game.",
       metrics: [
-        { label: "Players", value: "2-player" },
-        { label: "Display", value: "5×5 LED" },
-        { label: "Comms", value: "UART serial" },
-        { label: "Language", value: "C" },
-      ],
-      diagram: {
-        title: "Game State Machine",
-        nodes: [
-          { id: "place",    label: "PLACE SHIPS" },
-          { id: "pturn",    label: "MY TURN" },
-          { id: "wait",     label: "WAIT ACK" },
-          { id: "oturn",    label: "THEIR TURN" },
-          { id: "over",     label: "GAME OVER" },
-        ],
-      },
-      images: [
-        { alt: "Two UCFK4 boards playing Battleship", caption: "Two boards connected for multiplayer" },
-        { alt: "LED matrix game display", caption: "5×5 grid during active game" },
-      ],
+        {
+          label: "Players",
+          value: "2 boards"
+        },
+        {
+          label: "Display",
+          value: "5×7 LED"
+        },
+        {
+          label: "Link",
+          value: "Infrared"
+        },
+        {
+          label: "Language",
+          value: "C"
+        }
+      ]
     },
+    github: "https://github.com/geosaurus98/battleship-UCFK4"
+  },
+  {
+    id: "step-counter",
+    title: "STM32 Step Counter",
+    subtitle: "Team project · ENCE361 · STM32C071",
+    description: "Modular C firmware for accelerometer-based step detection, distance estimates, configurable goals, and an OLED interface, coordinated by a cooperative task scheduler.",
+    tags: [
+      "C",
+      "STM32",
+      "Signal Filtering",
+      "State Machines",
+      "Runtime Profiling"
+    ],
+    detail: {
+      overview: "Built for ENCE361, this step counter uses an STM32C071 Nucleo board and a custom expansion module. It filters accelerometer readings, detects steps from the acceleration magnitude, and presents step count, distance, and goal progress on an OLED display.",
+      highlights: [
+        "Separated accelerometer processing, step detection, goal tracking, display, and input handling into modules.",
+        "Used HAL_GetTick() to schedule periodic tasks without an RTOS.",
+        "Applied filtering and threshold-based detection to the accelerometer magnitude.",
+        "Added joystick navigation, potentiometer goal setting, LED progress, and buzzer feedback.",
+        "Provided serial telemetry, a controllable test mode, and task-runtime profiling."
+      ],
+      challenge: "Fixed thresholds did not generalise equally across all walking styles: testing found undercounting for some users. The test mode supports checking UI and goal logic, while live accelerometer telemetry helps investigate detection behaviour separately.",
+      outcome: "Implemented step and distance displays, goal setting, and progress feedback with modular scheduled firmware. Profiling documented task execution costs. Adaptive thresholds and broader user testing remain useful next steps for improving detection consistency.",
+      metrics: [
+        {
+          label: "MCU",
+          value: "STM32C071"
+        },
+        {
+          label: "Language",
+          value: "C"
+        },
+        {
+          label: "Scheduling",
+          value: "Cooperative"
+        },
+        {
+          label: "Interface",
+          value: "OLED + joystick"
+        }
+      ]
+    },
+    github: "https://github.com/geosaurus98/Step-Counter",
+    featured: true
   },
 ];
