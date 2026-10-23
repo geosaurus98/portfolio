@@ -28,21 +28,21 @@ Open [http://localhost:3001](http://localhost:3001).
 
 ### High value for engineering roles
 
-- [ ] **Contact form** — the contact page is static info only. Add a working form with [Formspree](https://formspree.io) (free tier, no backend needed).
-- [ ] **Custom favicon** — replace the default Next.js icon. A simple monogram SVG in terminal green. Put it in `public/favicon.ico` (or `public/icon.svg` for Next.js App Router auto-detection).
+- [x] **Contact form** — `src/components/ContactForm.tsx`, using `@formspree/react` with form `mrppznbz`. Set `NEXT_PUBLIC_FORMSPREE_ID` in Vercel to use a different form.
+- [x] **Custom favicon** — `src/app/icon.svg`.
 - [ ] **"Available from" signal** — add a one-liner to the hero: *"Available for graduate roles from [month]"*. Edit `src/app/page.tsx`.
 
 ### Polish
 
 - [x] **Custom 404 page** — `src/app/not-found.tsx`.
-- [ ] **Analytics** — enable Vercel Analytics (free, one line of code) before you start sharing the link so you can see who's visiting.
-- [ ] **Sitemap** — install `next-sitemap`, add a `next-sitemap.config.js`, and add `postbuild` to `package.json`. Helps Google index the site.
+- [ ] **Analytics** — the code is in place (`<Analytics />` in `layout.tsx`). Turn it on in the Vercel dashboard: project → **Analytics** → **Enable**.
+- [x] **Sitemap** — `src/app/sitemap.ts` and `src/app/robots.ts`.
 
 ### Nice to have
 
 - [ ] **RoboCup video** — drop the video file into `public/projects/robocup/` named `video.mp4`. Add a `video` entry to the RoboCup project once the file exists.
 - [ ] **Custom domain** — after you have the role, or if you already own a domain.
-- [ ] **About page** — only worth adding if you have more to say than the hero covers.
+- [x] **About section** — on the home page (`src/app/page.tsx`).
 
 ---
 

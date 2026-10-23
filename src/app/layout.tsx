@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next";
+import { siteUrl } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,13 +16,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-// Set NEXT_PUBLIC_SITE_URL once the site has a domain; Vercel deployments fall back to their own URL.
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "http://localhost:3000");
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -44,6 +40,18 @@ export const metadata: Metadata = {
   },
 };
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "George Johnson",
+  url: siteUrl,
+  jobTitle: "Mechatronics Engineering Student",
+  email: "mailto:george.johnson@outlook.co.nz",
+  address: { "@type": "PostalAddress", addressLocality: "Christchurch", addressCountry: "NZ" },
+  alumniOf: { "@type": "CollegeOrUniversity", name: "University of Canterbury" },
+  sameAs: ["https://github.com/geosaurus98", "https://www.linkedin.com/in/george-johnson-nz"],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -55,7 +63,7 @@ export default function RootLayout({
         {/* Prevent flash of wrong theme */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();`,
+            __html: `(function(){var t='dark';try{t=localStorage.getItem('theme')||'dark';}catch(e){}document.documentElement.setAttribute('data-theme',t);})();`,
           }}
         />
       </head>
@@ -63,7 +71,13 @@ export default function RootLayout({
         <ThemeProvider>
           <Nav />
           {children}
+          <Footer />
         </ThemeProvider>
+        <Analytics />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
       </body>
     </html>
   );
