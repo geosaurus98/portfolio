@@ -1,7 +1,7 @@
 export const skills = [
   {
     category: "Firmware & Embedded",
-    items: ["C/C++", "STM32", "Arduino", "Teensy", "ARM/AVR", "Real-time Systems", "Sensor Integration", "Interrupts/Timers"],
+    items: ["C/C++", "STM32", "Arduino", "Teensy", "ARM/AVR", "Embedded Linux", "Yocto", "Real-time Systems", "Sensor Integration", "Interrupts/Timers"],
   },
   {
     category: "Interfaces & Comms",
@@ -9,7 +9,7 @@ export const skills = [
   },
   {
     category: "Software & Tooling",
-    items: ["Python", "PlatformIO", "Git/GitHub", "MATLAB", "Simulink", "VBA", "Linux"],
+    items: ["Python", "TypeScript", "React", "PlatformIO", "Git/GitHub", "GitHub Actions", "MATLAB", "Simulink", "VBA", "Linux"],
   },
   {
     category: "Digital & FPGA",

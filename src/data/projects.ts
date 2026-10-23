@@ -10,6 +10,7 @@ export type Project = {
   tags: string[];
   github?: string;
   featured?: boolean;
+  category?: "engineering" | "software";
   detail?: ProjectDetail;
 };
 
@@ -22,7 +23,7 @@ export type ProjectDetail = {
   metrics?: Metric[];
   diagram?: StateDiagramData;
   video?: { src: string; caption?: string };
-  images?: { alt: string; caption?: string }[];
+  images?: { src: string; alt: string; caption?: string }[];
 };
 
 export const projects: Project[] = [
@@ -145,10 +146,6 @@ export const projects: Project[] = [
         { label: "Control", value: "Bluetooth" },
         { label: "IK method", value: "Analytical" },
       ],
-      images: [
-        { alt: "Robotic arm full assembly", caption: "Completed 4-DOF arm" },
-        { alt: "Arm performing pick-and-place", caption: "Pick-and-place demonstration" },
-      ],
     },
   },
   {
@@ -231,10 +228,6 @@ export const projects: Project[] = [
           { id: "close",    label: "DOOR CLOSE" },
         ],
       },
-      images: [
-        { alt: "PLC wiring and I/O configuration", caption: "PLC hardware setup" },
-        { alt: "Ladder Logic program excerpt", caption: "Call prioritisation logic" },
-      ],
     },
   },
   {
@@ -365,9 +358,120 @@ export const projects: Project[] = [
           label: "Interface",
           value: "OLED + joystick"
         }
+      ],
+      images: [
+        {
+          src: "/projects/step-counter/module-dependency.jpg",
+          alt: "Diagram of firmware modules and the dependencies between them",
+          caption: "Firmware module dependency diagram"
+        },
+        {
+          src: "/projects/step-counter/step-detection.png",
+          alt: "Graph of accelerometer magnitude against upper and lower step-detection thresholds",
+          caption: "Threshold-based step detection on accelerometer magnitude"
+        }
       ]
     },
     github: "https://github.com/geosaurus98/Step-Counter",
     featured: true
+  },
+  {
+    id: "nba-stats-hub",
+    title: "NBA Stats Hub",
+    subtitle: "Personal project · TypeScript · React",
+    category: "software",
+    description: "A React and TypeScript web app for following the NBA: live scores, box scores, standings, playoff simulations, Elo power ratings, shot charts, and a history section going back to 1946-47.",
+    tags: [
+      "TypeScript",
+      "React",
+      "Vite",
+      "Vitest",
+      "GitHub Actions",
+      "Data Processing"
+    ],
+    detail: {
+      overview: "NBA Stats Hub pulls data from ESPN's public NBA API and turns it into scores, game pages, player and team pages, projections, and history views. Live games refresh every 30 seconds, and a season picker switches between completed and in-progress seasons.",
+      highlights: [
+        "Normalised raw API responses in one parsing layer, covered by unit tests.",
+        "Simulated the rest of the season 2,000 times to estimate playoff, Finals, and title odds, including the play-in and every series.",
+        "Built Elo power ratings, an explained MVP / DPOY / Rookie of the Year model, and a draft lottery simulator.",
+        "Derived assist networks, shot maps, lineups, and on/off splits from play-by-play data.",
+        "Added a teammate graph of every player since 1946-47 for a \"six degrees\" game and shortest-chain search."
+      ],
+      challenge: "Loading a full season live from the browser would mean roughly 145 MB of schedules and game logs. A scheduled GitHub Actions workflow instead fetches completed and in-progress seasons, aggregates them, and commits compact snapshots so heavy league-wide views load instantly.",
+      outcome: "Delivered a multi-page app with lazy-loaded data (around 150 KB gzipped for the app itself), a CI workflow that tests and builds every push, and a single-file standalone build that opens without any install.",
+      metrics: [
+        { label: "Language", value: "TypeScript" },
+        { label: "Simulations", value: "2,000 / run" },
+        { label: "Players", value: "5,400+" },
+        { label: "CI", value: "GitHub Actions" }
+      ]
+    },
+    github: "https://github.com/geosaurus98/NbaStats"
+  },
+  {
+    id: "trip-budget-explorer",
+    title: "Trip Route & Budget Explorer",
+    subtitle: "Personal project · Python · Streamlit",
+    category: "software",
+    description: "A local Python app for planning trips: map the route, track costs in NZD across currencies, and compare whether a cheaper route is worth the extra travel time.",
+    tags: [
+      "Python",
+      "Streamlit",
+      "SQLite",
+      "pytest",
+      "Folium"
+    ],
+    detail: {
+      overview: "The app stores trips, stops, transport legs, and expenses in SQLite and shows the route on a Folium map. Route options can be compared on cost, time, and break-even value, with what-if scenarios for prices and exchange rates.",
+      highlights: [
+        "Kept calculations and storage free of UI code, so they can be tested and used from a plain Python shell.",
+        "Used Decimal arithmetic with one rounding rule per cost line, so breakdowns always add up exactly.",
+        "Flagged missing exchange rates, itinerary overlaps, and gaps between transport legs as warnings.",
+        "Tracked cost history to compare first estimates with current prices, plus booking deadlines and settle-up between travellers.",
+        "Added JSON import/export with validation and a printable HTML trip summary."
+      ],
+      challenge: "Money calculations had to stay consistent across currencies, per-person and whole-group costs, and accommodation nights that change when dates change. A single cost model and a pytest suite made those rules explicit and checkable.",
+      outcome: "Delivered a working local planner with a modular package structure and around 90 automated tests covering calculations, comparisons, storage, and mapping.",
+      metrics: [
+        { label: "Language", value: "Python" },
+        { label: "Storage", value: "SQLite" },
+        { label: "Tests", value: "pytest" },
+        { label: "Money", value: "Decimal" }
+      ]
+    },
+    github: "https://github.com/geosaurus98/Trip-Budget-Explorer"
+  },
+  {
+    id: "games-app",
+    title: "GamesApp",
+    subtitle: "Personal project · Installable web app",
+    category: "software",
+    description: "A collection of seven browser games, including Sudoku, Solitaire, Minesweeper, and daily word puzzles, that installs to a phone's home screen and works offline.",
+    tags: [
+      "JavaScript",
+      "PWA",
+      "HTML/CSS",
+      "node:test"
+    ],
+    detail: {
+      overview: "GamesApp is a progressive web app written in plain HTML, CSS, and JavaScript with no build step. A service worker caches the games for offline play, and a web manifest lets it install like a native app.",
+      highlights: [
+        "Separated each game's rules (logic.js, no DOM) from its touch interface (app.js).",
+        "Generated Sudoku puzzles with exactly one solution across four difficulty levels.",
+        "Built daily word puzzles from the ENABLE dictionary and SCOWL word lists with a generation script.",
+        "Added touch controls such as drag-and-drop, long-press flagging, and swipe gestures.",
+        "Tested every game's logic with Node's built-in test runner."
+      ],
+      challenge: "Games needed to feel responsive on a phone held upright, save progress automatically, and keep working without a connection. Keeping logic separate from the UI made the rules testable without a browser.",
+      outcome: "Delivered seven playable games with saved progress, best scores, and offline support, each backed by logic tests.",
+      metrics: [
+        { label: "Games", value: "7" },
+        { label: "Build step", value: "None" },
+        { label: "Offline", value: "Service worker" },
+        { label: "Tests", value: "node:test" }
+      ]
+    },
+    github: "https://github.com/geosaurus98/GamesApp"
   },
 ];
