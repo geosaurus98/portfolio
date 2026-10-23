@@ -16,7 +16,12 @@ export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggle } = useTheme();
 
-  useEffect(() => { setIsOpen(false); }, [pathname]);
+  // Close the mobile menu after navigating.
+  const [lastPathname, setLastPathname] = useState(pathname);
+  if (pathname !== lastPathname) {
+    setLastPathname(pathname);
+    setIsOpen(false);
+  }
 
   useEffect(() => {
     if (!isOpen) return;

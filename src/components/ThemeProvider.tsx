@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useSyncExternalStore } from "react";
 
 type Theme = "dark" | "light";
 
@@ -9,21 +9,29 @@ const ThemeContext = createContext<{ theme: Theme; toggle: () => void }>({
   toggle: () => {},
 });
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("dark");
+// The inline script in layout.tsx sets data-theme before hydration, so the
+// <html> attribute is the source of truth and React just subscribes to it.
+function subscribe(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  return () => observer.disconnect();
+}
 
-  useEffect(() => {
-    const saved = localStorage.getItem("theme") as Theme | null;
-    const initial = saved ?? "dark";
-    setTheme(initial);
-    document.documentElement.setAttribute("data-theme", initial);
-  }, []);
+function getTheme(): Theme {
+  return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+}
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const theme = useSyncExternalStore<Theme>(subscribe, getTheme, () => "dark");
 
   const toggle = () => {
     const next: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    localStorage.setItem("theme", next);
     document.documentElement.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+      // Storage can be unavailable (private mode); the theme still applies for this visit.
+    }
   };
 
   return (
