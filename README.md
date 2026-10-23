@@ -2,6 +2,8 @@
 
 Personal engineering portfolio built with Next.js 16, TypeScript, and Tailwind CSS v4.
 
+**Live site:** https://george-johnson.vercel.app/
+
 ## Running locally
 
 ```powershell
@@ -20,7 +22,7 @@ Open [http://localhost:3001](http://localhost:3001).
 
 ### Must-haves (do these before sharing the link)
 
-- [ ] **Deploy to Vercel** — push to GitHub, import the repo at vercel.com/new, done. Free tier is fine. Set `NEXT_PUBLIC_SITE_URL` if you add a custom domain (used for social preview images).
+- [x] **Deploy to Vercel** — live at https://george-johnson.vercel.app/. Pushes to `master` deploy automatically. Set `NEXT_PUBLIC_SITE_URL` if you add a custom domain (used for social preview images).
 - [ ] **Add CV PDF** — drop `George_Johnson_CV.pdf` into `public/`. Until it is added, the home and contact pages offer an email request link. Update both links when enabling downloads.
 - [ ] **Add project photos** — drop images into `public/projects/<project-id>/` and add `{ src, alt, caption }` entries to the project's `images` array in `src/data/projects.ts`. The Step Counter has its two README diagrams; RoboCup, the robotic arm and the PLC elevator still need real photos.
 
@@ -91,4 +93,4 @@ public/
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS v4 (CSS-based config, no `tailwind.config.ts`)
 - **Theming:** CSS custom properties on `data-theme` attribute, persisted via localStorage
-- **Deployment target:** Vercel (free tier)
+- **Deployment:** Vercel (free tier)
