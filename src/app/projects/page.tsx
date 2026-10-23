@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Projects — George Johnson",
+  title: "Projects",
   description: "Engineering projects across embedded systems, robotics, firmware, and software.",
 };
 
