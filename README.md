@@ -28,7 +28,7 @@ Open [http://localhost:3001](http://localhost:3001).
 
 ### High value for engineering roles
 
-- [ ] **Contact form** — built, but hidden until configured. Create a free form at [formspree.io](https://formspree.io), then in Vercel add the environment variable `NEXT_PUBLIC_FORMSPREE_ID` (the ID after `/f/` in the form endpoint) and redeploy.
+- [x] **Contact form** — `src/components/ContactForm.tsx`, using `@formspree/react` with form `mrppznbz`. Set `NEXT_PUBLIC_FORMSPREE_ID` in Vercel to use a different form.
 - [x] **Custom favicon** — `src/app/icon.svg`.
 - [ ] **"Available from" signal** — add a one-liner to the hero: *"Available for graduate roles from [month]"*. Edit `src/app/page.tsx`.
 
