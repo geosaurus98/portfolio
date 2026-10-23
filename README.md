@@ -20,9 +20,9 @@ Open [http://localhost:3001](http://localhost:3001).
 
 ### Must-haves (do these before sharing the link)
 
-- [ ] **Deploy to Vercel** — push to GitHub, import the repo at vercel.com/new, done. Free tier is fine.
+- [ ] **Deploy to Vercel** — push to GitHub, import the repo at vercel.com/new, done. Free tier is fine. Set `NEXT_PUBLIC_SITE_URL` if you add a custom domain (used for social preview images).
 - [ ] **Add CV PDF** — drop `George_Johnson_CV.pdf` into `public/`. Until it is added, the home and contact pages offer an email request link. Update both links when enabling downloads.
-- [ ] **Add project photos** — drop images into `public/projects/<project-id>/` and update the `images` array in `src/data/projects.ts`. Even one real photo per project makes a big difference.
+- [ ] **Add project photos** — drop images into `public/projects/<project-id>/` and add `{ src, alt, caption }` entries to the project's `images` array in `src/data/projects.ts`. The Step Counter has its two README diagrams; RoboCup, the robotic arm and the PLC elevator still need real photos.
 
 ### High value for engineering roles
 
@@ -32,7 +32,7 @@ Open [http://localhost:3001](http://localhost:3001).
 
 ### Polish
 
-- [ ] **Custom 404 page** — create `src/app/not-found.tsx`. Currently shows the Next.js default.
+- [x] **Custom 404 page** — `src/app/not-found.tsx`.
 - [ ] **Analytics** — enable Vercel Analytics (free, one line of code) before you start sharing the link so you can see who's visiting.
 - [ ] **Sitemap** — install `next-sitemap`, add a `next-sitemap.config.js`, and add `postbuild` to `package.json`. Helps Google index the site.
 
@@ -80,9 +80,10 @@ public/
 ## Adding a new project
 
 1. Add an entry to the `projects` array in `src/data/projects.ts` with a unique `id`.
-2. Fill in the `detail` object: `overview`, `highlights`, `challenge`, `outcome`, plus optional `contribution`, `metrics`, `diagram`, `video`, and `images`.
-3. Drop any photos into `public/projects/<id>/` and reference them in `images`.
-4. The project card and detail page are generated automatically — no other files to touch.
+2. Set `category: "software"` for software side projects (shown in their own section), or leave it out for engineering projects.
+3. Fill in the `detail` object: `overview`, `highlights`, `challenge`, `outcome`, plus optional `contribution`, `metrics`, `diagram`, `video`, and `images`.
+4. Drop any photos into `public/projects/<id>/` and reference them in `images`.
+5. The project card and detail page are generated automatically — no other files to touch.
 
 ## Tech stack
 
