@@ -9,7 +9,8 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   const featured = projects.filter((p) => p.featured);
-  const rest = projects.filter((p) => !p.featured);
+  const rest = projects.filter((p) => !p.featured && p.category !== "software");
+  const software = projects.filter((p) => !p.featured && p.category === "software");
 
   return (
     <main className="min-h-screen pt-14">
@@ -25,7 +26,7 @@ export default function ProjectsPage() {
         </p>
 
         <div className="mb-3 fade-up fade-delay-3">
-          <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest mb-4">// Featured</p>
+          <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest mb-4">{"// Featured"}</p>
           <div className="grid md:grid-cols-2 gap-4">
             {featured.map((project) => (
               <ProjectCard key={project.id} project={project} />
@@ -34,13 +35,24 @@ export default function ProjectsPage() {
         </div>
 
         <div className="mt-8 fade-up fade-delay-4">
-          <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest mb-4">// All projects</p>
+          <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest mb-4">{"// More engineering projects"}</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {rest.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
           </div>
         </div>
+
+        {software.length > 0 && (
+          <div className="mt-8 fade-up fade-delay-5">
+            <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest mb-4">{"// Software side projects"}</p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {software.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </main>
   );

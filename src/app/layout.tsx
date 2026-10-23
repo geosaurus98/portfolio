@@ -14,8 +14,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Set NEXT_PUBLIC_SITE_URL once the site has a domain; Vercel deployments fall back to their own URL.
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://georgejohnson.dev"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "George Johnson — Mechatronics Engineer",
     template: "%s — George Johnson",
