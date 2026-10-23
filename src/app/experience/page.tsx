@@ -2,7 +2,7 @@ import { experience, type ExperienceEntry } from "@/data/experience";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Experience — George Johnson",
+  title: "Experience",
   description: "Work experience and education — George Johnson, Mechatronics Engineer.",
 };
 
@@ -24,7 +24,7 @@ export default function ExperiencePage() {
 
         <section className="mb-16 fade-up fade-delay-2">
           <h2 className="font-mono text-[var(--green)] text-xs uppercase tracking-widest mb-8">
-            // Work Experience
+            {"// Work Experience"}
           </h2>
           <div>
             {work.map((entry, i) => (
@@ -35,7 +35,7 @@ export default function ExperiencePage() {
 
         <section className="fade-up fade-delay-3">
           <h2 className="font-mono text-[var(--green)] text-xs uppercase tracking-widest mb-8">
-            // Education
+            {"// Education"}
           </h2>
           <div>
             {education.map((entry, i) => (

@@ -37,7 +37,7 @@
   --text:         #0f172a;
   --text-body:    #1e293b;
   --text-2:       #475569;
-  --text-muted:   #94a3b8;
+  --text-muted:   #64748b;
   --green:        #15803d;
   --green-dim:    #166534;
   --tag-bg:       #f1f5f9;
@@ -119,4 +119,16 @@ body {
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+/* ── Reduced motion ─────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .fade-up,
+  .cursor-blink { animation: none; }
+  .reveal,
+  .reveal.visible { opacity: 1; transform: none; transition: none; }
+  .card-lift,
+  .card-lift:hover { transition: none; transform: none; }
 }
