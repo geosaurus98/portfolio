@@ -83,6 +83,45 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── About ──────────────────────────────── */}
+      <section className="border-t border-[var(--border)] px-6 py-24">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-[1fr_2fr] gap-10">
+          <AnimateIn>
+            <p className="font-mono text-sm mb-4">
+              <span className="text-[var(--text-muted)]">~/portfolio</span>
+              <span className="text-[var(--text-body)]"> $ </span>
+              <span className="text-[var(--green)]">cat about.md</span>
+            </p>
+            <h2 className="text-2xl font-bold text-[var(--text)]">About me</h2>
+          </AnimateIn>
+          <AnimateIn delay={60}>
+            <div className="space-y-4 text-[var(--text-2)] leading-relaxed max-w-2xl">
+              <p>
+                I came to mechatronics because I like seeing code make something
+                physical happen. My favourite projects sit where firmware meets
+                hardware: reading a sensor, closing a control loop, or tracking
+                down why a board behaves differently on the bench than it does
+                in simulation.
+              </p>
+              <p>
+                Before engineering, I spent five years at McDonald’s, finishing
+                as a department manager leading a team of 10+, and worked harvest
+                seasons operating industrial hop machinery. An internship at
+                Sharland Engineering put me on the workshop floor, welding,
+                machining and assembling the kind of machines I now write
+                software for. Today I also build VBA automation tools for a
+                financial services firm.
+              </p>
+              <p>
+                I’m looking for a graduate role in embedded systems, robotics or
+                control engineering, where I can keep working across hardware and
+                software and learn from experienced engineers.
+              </p>
+            </div>
+          </AnimateIn>
+        </div>
+      </section>
+
       <section className="border-t border-[var(--border)] px-6 py-24">
         <div className="max-w-5xl mx-auto">
           <AnimateIn>

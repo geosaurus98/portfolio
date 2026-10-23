@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -44,6 +45,10 @@ export default function ContactPage() {
           Get in touch about embedded systems, robotics, graduate opportunities, or an engineering project. I’m based in Christchurch, New Zealand.
         </p>
 
+        <div className="fade-up fade-delay-3">
+          <ContactForm />
+        </div>
+
         {/* CV request */}
         <div className="mb-8 fade-up fade-delay-3">
           <a
@@ -67,7 +72,7 @@ export default function ContactPage() {
           {contactItems.map(({ label, value, href }) => (
             <div
               key={label}
-              className="flex items-center gap-6 p-4 border border-[var(--border)] rounded-lg bg-[var(--surface)] hover:border-[var(--green-40)] transition-colors"
+              className="flex items-center gap-4 sm:gap-6 p-4 border border-[var(--border)] rounded-lg bg-[var(--surface)] hover:border-[var(--green-40)] transition-colors"
             >
               <span className="font-mono text-xs text-[var(--text-muted)] w-16 shrink-0">
                 {label}
@@ -77,7 +82,7 @@ export default function ContactPage() {
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="font-mono text-sm text-[var(--text-body)] hover:text-[var(--green)] transition-colors"
+                  className="font-mono text-sm text-[var(--text-body)] hover:text-[var(--green)] transition-colors min-w-0 break-all"
                 >
                   {value}
                 </a>
