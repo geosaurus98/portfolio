@@ -376,6 +376,39 @@ export const projects: Project[] = [
     featured: true
   },
   {
+    id: "farm-weather-station",
+    title: "LoRa Farm Weather Station",
+    subtitle: "In progress · Personal project · STM32L4 + LoRa",
+    description: "A battery- and solar-powered weather station for a Canterbury farm: a low-power STM32 node sends temperature, humidity, pressure, rainfall and battery readings over LoRa every five minutes to a Python logging gateway.",
+    tags: [
+      "C",
+      "STM32",
+      "LoRa",
+      "Low Power",
+      "Python",
+      "SQLite"
+    ],
+    detail: {
+      overview: "The remote node pairs an STM32L432KC with a BME280 sensor, a tipping-bucket rain gauge and an SX1262 LoRa radio. It sleeps in STOP mode and wakes on the RTC every 300 seconds to send one packet. A second STM32 receives the packets and forwards them over USB to a gateway on a laptop or Raspberry Pi, which validates, stores and charts the data.",
+      highlights: [
+        "Wrote checkable requirements, each paired with how it will be verified, including sleep current measured with the debugger disconnected.",
+        "Designed a versioned 20-byte binary packet with station ID, sequence number and CRC-16.",
+        "Made rainfall a cumulative counter, so a lost packet never loses rainfall.",
+        "Built the Python gateway: CRC and version checks, gap and duplicate detection, tips-to-millimetres conversion, and SQLite storage.",
+        "Added a packet simulator so the gateway can be developed and tested before the hardware arrives."
+      ],
+      challenge: "The node has to count rain pulses even while asleep, survive Canterbury winters without charging a lithium cell below 0 °C, and run indefinitely from a small solar panel. That makes measured sleep current, not datasheet figures, the number the power design is sized from.",
+      outcome: "In progress. The requirements, packet protocol, pin check and parts list are done, and the gateway runs end to end against simulated packets with unit tests. Node and receiver firmware come next, followed by bench power measurements and a 500 m range test.",
+      metrics: [
+        { label: "MCU", value: "STM32L432KC" },
+        { label: "Radio", value: "LoRa SX1262" },
+        { label: "Interval", value: "5 min" },
+        { label: "Status", value: "In progress" }
+      ]
+    },
+    github: "https://github.com/geosaurus98/farm-weather-station"
+  },
+  {
     id: "nba-stats-hub",
     title: "NBA Stats Hub",
     subtitle: "Personal project · TypeScript · React",
@@ -399,7 +432,7 @@ export const projects: Project[] = [
         "Added a teammate graph of every player since 1946-47 for a \"six degrees\" game and shortest-chain search."
       ],
       challenge: "Loading a full season live from the browser would mean roughly 145 MB of schedules and game logs. A scheduled GitHub Actions workflow instead fetches completed and in-progress seasons, aggregates them, and commits compact snapshots so heavy league-wide views load instantly.",
-      outcome: "Delivered a multi-page app with lazy-loaded data (around 150 KB gzipped for the app itself), a CI workflow that tests and builds every push, and a single-file standalone build that opens without any install.",
+      outcome: "Delivered a multi-page app with lazy-loaded data (around 95 KB gzipped for the app itself), a CI workflow that tests and builds every push, and a single-file standalone build that opens without any install.",
       metrics: [
         { label: "Language", value: "TypeScript" },
         { label: "Simulations", value: "2,000 / run" },
@@ -447,7 +480,7 @@ export const projects: Project[] = [
     title: "GamesApp",
     subtitle: "Personal project · Installable web app",
     category: "software",
-    description: "A collection of seven browser games, including Sudoku, Solitaire, Minesweeper, and daily word puzzles, that installs to a phone's home screen and works offline.",
+    description: "A collection of 17 browser games, including Sudoku, five solitaire variants, Connect Four, and daily word puzzles, that installs to a phone's home screen and works offline.",
     tags: [
       "JavaScript",
       "PWA",
@@ -464,14 +497,48 @@ export const projects: Project[] = [
         "Tested every game's logic with Node's built-in test runner."
       ],
       challenge: "Games needed to feel responsive on a phone held upright, save progress automatically, and keep working without a connection. Keeping logic separate from the UI made the rules testable without a browser.",
-      outcome: "Delivered seven playable games with saved progress, best scores, and offline support, each backed by logic tests.",
+      outcome: "Delivered 17 playable games, from card and puzzle games to arcade classics, with saved progress, best scores, and offline support, each backed by logic tests.",
       metrics: [
-        { label: "Games", value: "7" },
+        { label: "Games", value: "17" },
         { label: "Build step", value: "None" },
         { label: "Offline", value: "Service worker" },
         { label: "Tests", value: "node:test" }
       ]
     },
     github: "https://github.com/geosaurus98/GamesApp"
+  },
+  {
+    id: "2048-ml",
+    title: "2048 & Tetris Learning Agents",
+    subtitle: "Personal project · Python · Reinforcement learning",
+    category: "software",
+    description: "Agents that learn to play 2048 and Tetris, from expectimax search to Double DQN, n-tuple networks and the cross-entropy method, with fast Numba game engines and side-by-side replay viewers.",
+    tags: [
+      "Python",
+      "PyTorch",
+      "Numba",
+      "Gymnasium",
+      "Reinforcement Learning",
+      "pytest"
+    ],
+    detail: {
+      overview: "The project wraps fast Numba implementations of 2048 and placement Tetris in Gymnasium environments, then trains and compares several kinds of agent on them. Seeded evaluation and recorded games make runs repeatable and easy to compare.",
+      highlights: [
+        "2048 agents: random, expectimax search, Double DQN, and an n-tuple network trained with afterstate TD(0).",
+        "Tetris agents: random, Dellacherie's hand-tuned heuristic, noisy cross-entropy method weights, and a DQN that values the board after each placement.",
+        "Wrote the game engines with Numba for the speed that training needs.",
+        "Built comparison scripts that produce CSV results and plots across many seeded games.",
+        "Generated HTML replay viewers that play recorded games side by side."
+      ],
+      challenge: "Good Tetris agents almost never lose on the standard 10×20 board, so games have to be capped and the result mostly shows who survives the cap. Comparisons therefore also use a 10×10 board, where games end and agents can be ranked properly.",
+      outcome: "Delivered training, evaluation and comparison tooling for both games, with resumable training runs and around 140 automated tests.",
+      metrics: [
+        { label: "Games", value: "2048 + Tetris" },
+        { label: "Agents", value: "8" },
+        { label: "Engine", value: "Numba" },
+        { label: "Tests", value: "pytest" }
+      ]
+    },
+    github: "https://github.com/geosaurus98/2048-ML"
   },
 ];
