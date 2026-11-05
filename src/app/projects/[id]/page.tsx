@@ -92,6 +92,27 @@ export default async function ProjectPage({
               <p className="text-[var(--text-2)] leading-relaxed">{detail.overview}</p>
             </section>
 
+            {detail.images && detail.images.length > 0 && (
+              <section className="fade-up fade-delay-3">
+                <SectionHeader label="Photos & figures" />
+                <div className="space-y-6">
+                  {detail.images.map((img) => (
+                    <figure key={img.src}>
+                      <a href={img.src} target="_blank" rel="noopener noreferrer" className="block">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={img.src}
+                          alt={img.alt}
+                          loading="lazy"
+                          className="w-full h-auto max-h-[75vh] object-contain rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent-40)] transition-colors"
+                        />
+                      </a>
+                      {img.caption && (
+                        <figcaption className="text-xs text-[var(--text-muted)] mt-2 text-center">
+                          {img.caption}
+                        </figcaption>
+                      )}
+
             {detail.contribution && (
               <section className="fade-up fade-delay-2">
                 <SectionHeader label="My Contribution" />
@@ -155,26 +176,6 @@ export default async function ProjectPage({
               </section>
             )}
 
-            {detail.images && detail.images.length > 0 && (
-              <section className="fade-up fade-delay-3">
-                <SectionHeader label="Images" />
-                <div className="space-y-6">
-                  {detail.images.map((img) => (
-                    <figure key={img.src}>
-                      <a href={img.src} target="_blank" rel="noopener noreferrer" className="block">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={img.src}
-                          alt={img.alt}
-                          loading="lazy"
-                          className="w-full h-auto rounded-lg border border-[var(--border)] bg-white hover:border-[var(--accent-40)] transition-colors"
-                        />
-                      </a>
-                      {img.caption && (
-                        <figcaption className="text-xs text-[var(--text-muted)] mt-2 text-center">
-                          {img.caption}
-                        </figcaption>
-                      )}
                     </figure>
                   ))}
                 </div>

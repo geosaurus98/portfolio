@@ -24,7 +24,7 @@ Open [http://localhost:3001](http://localhost:3001).
 
 - [x] **Deploy to Vercel** — live at https://george-johnson.vercel.app/. Pushes to `master` deploy automatically. Set `NEXT_PUBLIC_SITE_URL` if you add a custom domain (used for social preview images).
 - [ ] **Add CV PDF** — drop `George_Johnson_CV.pdf` into `public/`. Until it is added, the home and contact pages offer an email request link. Update both links when enabling downloads.
-- [ ] **Add project photos** — drop images into `public/projects/<project-id>/` and add `{ src, alt, caption }` entries to the project's `images` array in `src/data/projects.ts`. The Step Counter has its two README diagrams; RoboCup, the robotic arm and the PLC elevator still need real photos.
+- [ ] **Add project photos** — drop images into `public/projects/<project-id>/` and add `{ src, alt, caption }` entries to the project's `images` array in `src/data/projects.ts`. RoboCup and the FPGA reaction timer have photos, and the Step Counter has its two README diagrams. Horus, the robotic arm, the PLC elevator and the Step Counter still need photos of the hardware.
 
 ### High value for engineering roles
 
