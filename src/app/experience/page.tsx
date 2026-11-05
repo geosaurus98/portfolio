@@ -60,7 +60,7 @@ function TimelineEntry({ entry, isLast }: { entry: ExperienceEntry; isLast: bool
         <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-1">
           <h3 className="font-semibold text-[var(--text)]">{entry.title}</h3>
           <span className="hidden sm:block text-[var(--border)]">·</span>
-          <span className="font-mono text-xs text-[var(--green)]">{entry.period}</span>
+          <span className="text-xs text-[var(--green)]">{entry.period}</span>
         </div>
         <p className="text-sm text-[var(--text-muted)] mb-3">
           {entry.org} — {entry.location}

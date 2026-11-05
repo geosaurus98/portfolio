@@ -39,7 +39,7 @@ export default async function ProjectPage({
 
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 font-mono text-xs text-[var(--text-muted)] hover:text-[var(--green)] transition-colors mb-12 group"
+          className="inline-flex items-center gap-2 text-xs text-[var(--text-muted)] hover:text-[var(--green)] transition-colors mb-12 group"
         >
           <span className="group-hover:-translate-x-0.5 transition-transform">←</span>
           All Projects
@@ -54,7 +54,7 @@ export default async function ProjectPage({
           </p>
 
           {project.subtitle && (
-            <p className="font-mono text-xs text-[var(--green)] mb-3">{project.subtitle}</p>
+            <p className="text-xs text-[var(--green)] mb-3">{project.subtitle}</p>
           )}
 
           <h1 className="text-4xl font-bold text-[var(--text)] mb-6 leading-tight">
@@ -65,7 +65,7 @@ export default async function ProjectPage({
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="font-mono text-xs px-2 py-1 bg-[var(--tag-bg)] text-[var(--text-2)] rounded"
+                className="text-xs px-2 py-1 bg-[var(--tag-bg)] text-[var(--text-2)] rounded"
               >
                 {tag}
               </span>
@@ -77,7 +77,7 @@ export default async function ProjectPage({
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-mono text-xs text-[var(--text-muted)] hover:text-[var(--text-body)] transition-colors border border-[var(--border)] hover:border-[var(--green-40)] px-3 py-2 rounded"
+              className="inline-flex items-center gap-2 text-xs text-[var(--text-muted)] hover:text-[var(--text-body)] transition-colors border border-[var(--border)] hover:border-[var(--green-40)] px-3 py-2 rounded"
             >
               <GitHubIcon />
               View on GitHub
@@ -86,7 +86,7 @@ export default async function ProjectPage({
         </div>
 
         {!detail ? (
-          <p className="text-[var(--text-muted)] font-mono text-sm">
+          <p className="text-[var(--text-muted)] text-sm">
             Detailed write-up coming soon.
           </p>
         ) : (
@@ -123,9 +123,9 @@ export default async function ProjectPage({
                   {detail.metrics.map((m) => (
                     <div
                       key={m.label}
-                      className="border border-[var(--border)] bg-[var(--surface)] rounded-lg p-4 text-center"
+                      className="border border-[var(--border)] bg-[var(--surface)] rounded-lg p-4 text-center flex flex-col justify-center"
                     >
-                      <p className="font-mono text-xl font-bold text-[var(--green)] mb-1">{m.value}</p>
+                      <p className="font-mono text-base sm:text-lg font-bold leading-snug text-[var(--green)] mb-1 [text-wrap:balance]">{m.value}</p>
                       <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest">{m.label}</p>
                     </div>
                   ))}
@@ -153,7 +153,7 @@ export default async function ProjectPage({
                   />
                 </div>
                 {detail.video.caption && (
-                  <p className="font-mono text-xs text-[var(--text-muted)] mt-2 text-center">
+                  <p className="text-xs text-[var(--text-muted)] mt-2 text-center">
                     {detail.video.caption}
                   </p>
                 )}
@@ -176,7 +176,7 @@ export default async function ProjectPage({
                         />
                       </a>
                       {img.caption && (
-                        <figcaption className="font-mono text-xs text-[var(--text-muted)] mt-2 text-center">
+                        <figcaption className="text-xs text-[var(--text-muted)] mt-2 text-center">
                           {img.caption}
                         </figcaption>
                       )}
@@ -210,7 +210,7 @@ export default async function ProjectPage({
         <div className="mt-20 pt-8 border-t border-[var(--border)]">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 font-mono text-xs text-[var(--text-muted)] hover:text-[var(--green)] transition-colors group"
+            className="inline-flex items-center gap-2 text-xs text-[var(--text-muted)] hover:text-[var(--green)] transition-colors group"
           >
             <span className="group-hover:-translate-x-0.5 transition-transform">←</span>
             Back to all projects
