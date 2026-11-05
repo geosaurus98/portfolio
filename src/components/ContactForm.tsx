@@ -7,7 +7,7 @@ import { useForm, ValidationError } from "@formspree/react";
 const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID ?? "mrppznbz";
 
 const inputClass =
-  "w-full text-sm px-3 py-2.5 rounded border border-[var(--border)] bg-[var(--surface)] text-[var(--text-body)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--green)] aria-[invalid=true]:border-red-500 transition-colors";
+  "w-full text-sm px-3 py-2.5 rounded border border-[var(--border)] bg-[var(--surface)] text-[var(--text-body)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] aria-[invalid=true]:border-red-500 transition-colors";
 
 const errorClass = "text-xs text-red-500 mt-1.5";
 
@@ -16,8 +16,8 @@ export default function ContactForm() {
 
   if (state.succeeded) {
     return (
-      <div className="mb-8 p-4 border border-[var(--green-40)] rounded-lg bg-[var(--green-05)]" role="status">
-        <p className="text-sm text-[var(--green)]">Message sent. Thanks! I’ll get back to you soon.</p>
+      <div className="mb-8 p-4 border border-[var(--accent-40)] rounded-lg bg-[var(--accent-05)]" role="status">
+        <p className="text-sm text-[var(--accent)]">Message sent. Thanks! I’ll get back to you soon.</p>
       </div>
     );
   }
@@ -50,7 +50,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={state.submitting}
-          className="text-sm px-5 py-2.5 bg-[var(--green)] text-[#0a0a0a] font-semibold rounded hover:bg-[var(--green-dim)] transition-colors disabled:opacity-60"
+          className="text-sm px-5 py-2.5 bg-[var(--accent-strong)] text-white font-semibold rounded-lg hover:bg-[var(--accent-dim)] transition-colors disabled:opacity-60"
         >
           {state.submitting ? "Sending…" : "Send message"}
         </button>

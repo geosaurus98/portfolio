@@ -39,7 +39,7 @@ export default async function ProjectPage({
 
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 text-xs text-[var(--text-muted)] hover:text-[var(--green)] transition-colors mb-12 group"
+          className="inline-flex items-center gap-2 text-xs text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors mb-12 group"
         >
           <span className="group-hover:-translate-x-0.5 transition-transform">←</span>
           All Projects
@@ -47,14 +47,9 @@ export default async function ProjectPage({
 
         {/* Header */}
         <div className="mb-12 fade-up fade-delay-0">
-          <p className="font-mono text-sm mb-6">
-            <span className="text-[var(--text-muted)]">~/projects</span>
-            <span className="text-[var(--text-body)]"> $ </span>
-            <span className="text-[var(--green)]">cat {project.id}.md</span>
-          </p>
 
           {project.subtitle && (
-            <p className="text-xs text-[var(--green)] mb-3">{project.subtitle}</p>
+            <p className="text-xs text-[var(--accent)] mb-3">{project.subtitle}</p>
           )}
 
           <h1 className="text-4xl font-bold text-[var(--text)] mb-6 leading-tight">
@@ -77,7 +72,7 @@ export default async function ProjectPage({
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs text-[var(--text-muted)] hover:text-[var(--text-body)] transition-colors border border-[var(--border)] hover:border-[var(--green-40)] px-3 py-2 rounded"
+              className="inline-flex items-center gap-2 text-xs text-[var(--text-muted)] hover:text-[var(--text-body)] transition-colors border border-[var(--border)] hover:border-[var(--accent-40)] px-3 py-2 rounded"
             >
               <GitHubIcon />
               View on GitHub
@@ -109,7 +104,7 @@ export default async function ProjectPage({
               <ul className="space-y-3">
                 {detail.highlights.map((point, i) => (
                   <li key={i} className="flex gap-3 text-[var(--text-2)]">
-                    <span className="text-[var(--green)] font-mono shrink-0 mt-0.5">›</span>
+                    <span className="text-[var(--accent)] shrink-0 mt-0.5">›</span>
                     {point}
                   </li>
                 ))}
@@ -125,8 +120,8 @@ export default async function ProjectPage({
                       key={m.label}
                       className="border border-[var(--border)] bg-[var(--surface)] rounded-lg p-4 text-center flex flex-col justify-center"
                     >
-                      <p className="font-mono text-base sm:text-lg font-bold leading-snug text-[var(--green)] mb-1 [text-wrap:balance]">{m.value}</p>
-                      <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest">{m.label}</p>
+                      <p className="text-base sm:text-lg font-bold leading-snug text-[var(--accent)] mb-1 [text-wrap:balance]">{m.value}</p>
+                      <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider">{m.label}</p>
                     </div>
                   ))}
                 </div>
@@ -172,7 +167,7 @@ export default async function ProjectPage({
                           src={img.src}
                           alt={img.alt}
                           loading="lazy"
-                          className="w-full h-auto rounded-lg border border-[var(--border)] bg-white hover:border-[var(--green-40)] transition-colors"
+                          className="w-full h-auto rounded-lg border border-[var(--border)] bg-white hover:border-[var(--accent-40)] transition-colors"
                         />
                       </a>
                       {img.caption && (
@@ -189,14 +184,14 @@ export default async function ProjectPage({
             <section className="fade-up fade-delay-5">
               <SectionHeader label="Challenge & Outcome" />
               <div className="space-y-6">
-                <div className="border-l-2 border-[var(--green-40)] pl-5">
-                  <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest mb-2">
+                <div className="border-l-2 border-[var(--accent-40)] pl-5">
+                  <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider mb-2">
                     The Challenge
                   </p>
                   <p className="text-[var(--text-2)] leading-relaxed">{detail.challenge}</p>
                 </div>
-                <div className="border-l-2 border-[var(--green)] pl-5">
-                  <p className="font-mono text-xs text-[var(--green)] uppercase tracking-widest mb-2">
+                <div className="border-l-2 border-[var(--accent)] pl-5">
+                  <p className="text-xs text-[var(--accent)] uppercase tracking-wider mb-2">
                     The Outcome
                   </p>
                   <p className="text-[var(--text-2)] leading-relaxed">{detail.outcome}</p>
@@ -210,7 +205,7 @@ export default async function ProjectPage({
         <div className="mt-20 pt-8 border-t border-[var(--border)]">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 text-xs text-[var(--text-muted)] hover:text-[var(--green)] transition-colors group"
+            className="inline-flex items-center gap-2 text-xs text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors group"
           >
             <span className="group-hover:-translate-x-0.5 transition-transform">←</span>
             Back to all projects
@@ -225,7 +220,7 @@ export default async function ProjectPage({
 function SectionHeader({ label }: { label: string }) {
   return (
     <div className="flex items-center gap-3 mb-5">
-      <span className="font-mono text-xs text-[var(--green)] uppercase tracking-widest">{label}</span>
+      <span className="text-xs text-[var(--accent)] uppercase tracking-wider">{label}</span>
       <div className="flex-1 h-px bg-[var(--border)]" />
     </div>
   );

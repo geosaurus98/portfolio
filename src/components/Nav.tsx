@@ -41,7 +41,7 @@ export default function Nav() {
       <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
         <Link
           href="/"
-          className="font-mono text-[var(--green)] font-bold text-lg tracking-tight hover:opacity-75 transition-opacity"
+          className="text-[var(--accent)] font-bold text-lg tracking-tight hover:opacity-75 transition-opacity"
         >
           GJ
         </Link>
@@ -55,13 +55,13 @@ export default function Nav() {
                 href={href}
                 className={`text-sm transition-colors relative group ${
                   pathname === href
-                    ? "text-[var(--green)]"
+                    ? "text-[var(--accent)]"
                     : "text-[var(--text-muted)] hover:text-[var(--text-body)]"
                 }`}
               >
                 {label}
                 <span
-                  className={`absolute -bottom-0.5 left-0 h-px bg-[var(--green)] transition-all duration-200 ${
+                  className={`absolute -bottom-0.5 left-0 h-px bg-[var(--accent)] transition-all duration-200 ${
                     pathname === href ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 />
@@ -72,7 +72,7 @@ export default function Nav() {
           {/* Theme toggle */}
           <button
             onClick={toggle}
-            className="text-[var(--text-muted)] hover:text-[var(--green)] transition-colors p-1"
+            className="text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors p-1"
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           >
             {theme === "dark" ? <SunIcon /> : <MoonIcon />}
@@ -100,7 +100,7 @@ export default function Nav() {
                 href={href}
                 className={`text-sm py-3 px-2 rounded transition-colors ${
                   pathname === href
-                    ? "text-[var(--green)] bg-[var(--green-05)]"
+                    ? "text-[var(--accent)] bg-[var(--accent-05)]"
                     : "text-[var(--text-muted)] hover:text-[var(--text-body)] hover:bg-[var(--border)]"
                 }`}
               >
