@@ -114,6 +114,13 @@ export const projects: Project[] = [
           label: "Language",
           value: "C++"
         }
+      ],
+      images: [
+        {
+          src: "/projects/robocup/robot.webp",
+          alt: "Tracked autonomous robot with stacked acrylic electronics decks, a battery on top, a sensor housing at the front and a sorting mechanism underneath",
+          caption: "Clanker, the team's RoboCup robot, on the lab bench"
+        }
       ]
     },
     github: "https://github.com/geosaurus98/RoboCup",
@@ -187,6 +194,18 @@ export const projects: Project[] = [
         {
           label: "Statistics",
           value: "Last 3 results"
+        }
+      ],
+      images: [
+        {
+          src: "/projects/vhdl-reaction-timer/board.webp",
+          alt: "Nexys-4 DDR FPGA board running the reaction timer, with a result on the seven-segment display",
+          caption: "The reaction timer running on the Nexys-4 DDR board"
+        },
+        {
+          src: "/projects/vhdl-reaction-timer/display.webp",
+          alt: "Close-up of the Nexys-4 DDR seven-segment display showing a reaction time",
+          caption: "Close-up of the seven-segment display and status LEDs"
         }
       ]
     },
@@ -360,6 +379,11 @@ export const projects: Project[] = [
         }
       ],
       images: [
+        {
+          src: "/projects/step-counter/follow-up-tiva.webp",
+          alt: "TI Tiva C LaunchPad with an Orbit BoosterPack whose OLED screen reads Timer: Paused, El 0:08.009, Lap 0:00.000",
+          caption: "Follow-up project: a stopwatch with lap times on a TI Tiva C LaunchPad and Orbit BoosterPack"
+        },
         {
           src: "/projects/step-counter/module-dependency.jpg",
           alt: "Diagram of firmware modules and the dependencies between them",
