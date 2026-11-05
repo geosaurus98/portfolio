@@ -15,18 +15,13 @@ export default function ProjectsPage() {
   return (
     <main className="min-h-screen pt-14">
       <div className="max-w-5xl mx-auto px-6 py-16">
-        <p className="font-mono text-sm mb-4 fade-up fade-delay-0">
-          <span className="text-[var(--text-muted)]">~/portfolio</span>
-          <span className="text-[var(--text-body)]"> $ </span>
-          <span className="text-[var(--green)]">ls projects/</span>
-        </p>
         <h1 className="text-3xl font-bold text-[var(--text)] mb-2 fade-up fade-delay-1">Projects</h1>
         <p className="text-[var(--text-muted)] mb-12 fade-up fade-delay-2">
           Engineering projects across embedded systems, robotics, firmware, and software.
         </p>
 
         <div className="mb-3 fade-up fade-delay-3">
-          <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest mb-4">{"// Featured"}</p>
+          <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider mb-4">Featured</p>
           <div className="grid md:grid-cols-2 gap-4">
             {featured.map((project) => (
               <ProjectCard key={project.id} project={project} />
@@ -35,7 +30,7 @@ export default function ProjectsPage() {
         </div>
 
         <div className="mt-8 fade-up fade-delay-4">
-          <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest mb-4">{"// More engineering projects"}</p>
+          <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider mb-4">More engineering projects</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {rest.map((project) => (
               <ProjectCard key={project.id} project={project} />
@@ -45,7 +40,7 @@ export default function ProjectsPage() {
 
         {software.length > 0 && (
           <div className="mt-8 fade-up fade-delay-5">
-            <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest mb-4">{"// Software side projects"}</p>
+            <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider mb-4">Software side projects</p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {software.map((project) => (
                 <ProjectCard key={project.id} project={project} />
@@ -64,11 +59,11 @@ function ProjectCard({ project }: { project: Project }) {
       <div className="card-lift border border-[var(--border)] rounded-lg p-5 bg-[var(--surface)] group flex flex-col h-full">
         <div className="flex items-start justify-between mb-3">
           <div className="flex-1 min-w-0">
-            <h2 className="font-semibold text-[var(--text)] group-hover:text-[var(--green)] transition-colors">
+            <h2 className="font-semibold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
               {project.title}
             </h2>
             {project.subtitle && (
-              <p className="text-xs text-[var(--green)] mt-0.5">{project.subtitle}</p>
+              <p className="text-xs text-[var(--accent)] mt-0.5">{project.subtitle}</p>
             )}
           </div>
           {project.github && (
@@ -98,7 +93,7 @@ function ProjectCard({ project }: { project: Project }) {
               </span>
             )}
           </div>
-          <span className="text-xs text-[var(--text-muted)] group-hover:text-[var(--green)] transition-colors shrink-0 ml-2">
+          <span className="text-xs text-[var(--text-muted)] group-hover:text-[var(--accent)] transition-colors shrink-0 ml-2">
             View →
           </span>
         </div>

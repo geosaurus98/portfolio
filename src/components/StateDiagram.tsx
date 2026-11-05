@@ -24,7 +24,7 @@ export default function StateDiagram({ data }: { data: StateDiagramData }) {
 
   return (
     <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-4">
-      <p className="font-mono text-xs text-[var(--green)] uppercase tracking-widest mb-4">
+      <p className="text-xs text-[var(--accent)] uppercase tracking-wider mb-4">
         {data.title}
       </p>
       <div className="overflow-x-auto">
@@ -71,7 +71,7 @@ export default function StateDiagram({ data }: { data: StateDiagramData }) {
                 width={NW} height={NH}
                 rx="5"
                 fill="var(--tag-bg)"
-                stroke="var(--green)"
+                stroke="var(--accent)"
                 strokeWidth="1.5"
               />
               <text

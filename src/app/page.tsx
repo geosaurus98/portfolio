@@ -7,25 +7,20 @@ export default function Home() {
   return (
     <main>
       {/* ── Hero ───────────────────────────────── */}
-      <section className="min-h-screen grid-bg flex flex-col justify-center px-6 pt-14">
+      <section className="min-h-screen flex flex-col justify-center px-6 pt-14">
         <div className="max-w-5xl mx-auto w-full py-24">
-
-          <p className="font-mono text-sm mb-6 fade-up fade-delay-0">
-            <span className="text-[var(--text-muted)]">~/portfolio</span>
-            <span className="text-[var(--text-body)]"> $ </span>
-            <span className="text-[var(--green)]">whoami</span>
+          <p className="text-sm font-medium text-[var(--accent)] mb-4 fade-up fade-delay-0">
+            Mechatronics engineer · Christchurch, New Zealand
           </p>
-
-          <h1 className="font-mono text-5xl md:text-7xl font-bold text-[var(--text)] tracking-tight leading-tight fade-up fade-delay-1">
+          <h1 className="text-5xl md:text-7xl font-bold text-[var(--text)] tracking-tight leading-tight fade-up fade-delay-1">
             George Johnson
-            <span className="inline-block w-[3px] h-12 md:h-16 bg-[var(--green)] ml-2 align-bottom cursor-blink" />
           </h1>
 
           <div className="mt-6 mb-8 flex flex-wrap gap-2 fade-up fade-delay-2">
-            {["Mechatronics Engineering", "Embedded Linux", "Robotics", "Control Systems"].map((tag) => (
+            {["Firmware", "Embedded Linux", "Robotics", "Control Systems"].map((tag) => (
               <span
                 key={tag}
-                className="text-xs px-3 py-1 border border-[var(--border)] text-[var(--green)] rounded"
+                className="text-xs font-medium px-3 py-1 rounded-full bg-[var(--accent-10)] text-[var(--accent)]"
               >
                 {tag}
               </span>
@@ -48,19 +43,19 @@ export default function Home() {
           <div className="flex flex-wrap gap-3 fade-up fade-delay-4">
             <Link
               href="/projects"
-              className="text-sm px-5 py-3 bg-[var(--green)] text-[#0a0a0a] font-semibold rounded hover:bg-[var(--green-dim)] transition-colors"
+              className="text-sm px-5 py-3 bg-[var(--accent-strong)] text-white font-semibold rounded-lg hover:bg-[var(--accent-dim)] transition-colors"
             >
               View Projects →
             </Link>
             <Link
               href="/experience"
-              className="text-sm font-medium px-5 py-3 border border-[var(--border)] text-[var(--text-body)] rounded hover:border-[var(--green)] hover:text-[var(--green)] transition-colors"
+              className="text-sm font-medium px-5 py-3 border border-[var(--border)] text-[var(--text-body)] rounded-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
             >
               Experience
             </Link>
             <a
               href="mailto:george.johnson@outlook.co.nz?subject=CV%20request"
-              className="text-sm font-medium px-5 py-3 border border-[var(--border)] text-[var(--text-body)] rounded hover:border-[var(--green)] hover:text-[var(--green)] transition-colors"
+              className="text-sm font-medium px-5 py-3 border border-[var(--border)] text-[var(--text-body)] rounded-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
             >
               Request CV ↗
             </a>
@@ -71,7 +66,7 @@ export default function Home() {
       <section className="border-t border-[var(--border)] px-6 py-24">
         <div className="max-w-5xl mx-auto">
           <AnimateIn>
-            <p className="font-mono text-xs text-[var(--green)] uppercase tracking-widest mb-4">
+            <p className="text-xs text-[var(--accent)] uppercase tracking-wider mb-4">
               Selected engineering work
             </p>
             <h2 className="text-2xl font-bold text-[var(--text)] mb-4">
@@ -88,19 +83,19 @@ export default function Home() {
               <AnimateIn key={project.id} delay={i * 60}>
                 <Link
                   href={`/projects/${project.id}`}
-                  className="block h-full border border-[var(--border)] rounded-lg p-5 bg-[var(--surface)] hover:border-[var(--green)] transition-colors"
+                  className="block h-full border border-[var(--border)] rounded-lg p-5 bg-[var(--surface)] hover:border-[var(--accent)] transition-colors"
                 >
-                  <p className="text-xs text-[var(--green)] mb-3">
+                  <p className="text-xs text-[var(--accent)] mb-3">
                     {project.tags.slice(0, 2).join(" · ")}
                   </p>
                   <h3 className="font-semibold text-[var(--text)] mb-3">{project.title}</h3>
                   <p className="text-sm text-[var(--text-2)] leading-relaxed mb-5">{project.description}</p>
-                  <span className="text-xs text-[var(--green)]">Read case study →</span>
+                  <span className="text-xs text-[var(--accent)]">Read case study →</span>
                 </Link>
               </AnimateIn>
             ))}
           </div>
-          <Link href="/projects" className="inline-block mt-8 text-sm text-[var(--green)] hover:underline">
+          <Link href="/projects" className="inline-block mt-8 text-sm text-[var(--accent)] hover:underline">
             Explore all projects →
           </Link>
         </div>
@@ -110,11 +105,6 @@ export default function Home() {
       <section className="border-t border-[var(--border)] px-6 py-24">
         <div className="max-w-5xl mx-auto grid md:grid-cols-[1fr_2fr] gap-10">
           <AnimateIn>
-            <p className="font-mono text-sm mb-4">
-              <span className="text-[var(--text-muted)]">~/portfolio</span>
-              <span className="text-[var(--text-body)]"> $ </span>
-              <span className="text-[var(--green)]">cat about.md</span>
-            </p>
             <h2 className="text-2xl font-bold text-[var(--text)]">About me</h2>
           </AnimateIn>
           <AnimateIn delay={60}>
@@ -149,11 +139,6 @@ export default function Home() {
       <section className="border-t border-[var(--border)] px-6 py-24">
         <div className="max-w-5xl mx-auto">
           <AnimateIn>
-            <p className="font-mono text-sm mb-4">
-              <span className="text-[var(--text-muted)]">~/portfolio</span>
-              <span className="text-[var(--text-body)]"> $ </span>
-              <span className="text-[var(--green)]">cat skills.json</span>
-            </p>
             <h2 className="text-2xl font-bold text-[var(--text)] mb-10">Skills</h2>
           </AnimateIn>
 
@@ -161,7 +146,7 @@ export default function Home() {
             {skills.map((group, i) => (
               <AnimateIn key={group.category} delay={i * 60}>
                 <div className="border border-[var(--border)] rounded-lg p-5 bg-[var(--surface)] h-full">
-                  <h3 className="font-mono text-xs text-[var(--green)] uppercase tracking-widest mb-4">
+                  <h3 className="text-xs text-[var(--accent)] uppercase tracking-wider mb-4">
                     {group.category}
                   </h3>
                   <div className="flex flex-wrap gap-1.5">

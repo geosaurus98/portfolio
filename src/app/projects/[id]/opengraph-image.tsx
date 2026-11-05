@@ -36,29 +36,19 @@ export default async function Image({
     (
       <div
         style={{
-          background: "#0a0a0a",
+          background: "#0b0f17",
           width: "100%",
           height: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          fontFamily: "monospace",
+          fontFamily: "sans-serif",
           position: "relative",
         }}
       >
-        {/* Grid background */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "linear-gradient(rgba(34,197,94,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(34,197,94,0.04) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
 
-        {/* Left green border accent */}
+        {/* Left accent bar */}
         <div
           style={{
             position: "absolute",
@@ -66,21 +56,14 @@ export default async function Image({
             top: "80px",
             bottom: "80px",
             width: "4px",
-            background: "#22c55e",
+            background: "#3b82f6",
             borderRadius: "0 2px 2px 0",
           }}
         />
 
-        {/* Prompt */}
-        <div style={{ display: "flex", marginBottom: "20px", fontSize: "18px" }}>
-          <span style={{ color: "#64748b" }}>~/projects</span>
-          <span style={{ color: "#e2e8f0", margin: "0 4px" }}>$</span>
-          <span style={{ color: "#22c55e" }}>cat {id}.md</span>
-        </div>
-
         {/* Subtitle */}
         {subtitle && (
-          <div style={{ fontSize: "18px", color: "#22c55e", marginBottom: "16px" }}>
+          <div style={{ fontSize: "18px", color: "#3b82f6", marginBottom: "16px" }}>
             {subtitle}
           </div>
         )}
@@ -107,7 +90,7 @@ export default async function Image({
               style={{
                 fontSize: "16px",
                 color: "#94a3b8",
-                background: "#1a2332",
+                background: "#1a2333",
                 padding: "5px 12px",
                 borderRadius: "4px",
               }}

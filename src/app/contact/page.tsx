@@ -33,11 +33,6 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen pt-14 flex flex-col justify-center">
       <div className="max-w-2xl mx-auto px-6 py-16 w-full">
-        <p className="font-mono text-sm mb-4 fade-up fade-delay-0">
-          <span className="text-[var(--text-muted)]">~/portfolio</span>
-          <span className="text-[var(--text-body)]"> $ </span>
-          <span className="text-[var(--green)]">contact --info</span>
-        </p>
         <h1 className="text-3xl font-bold text-[var(--text)] mb-3 fade-up fade-delay-1">
           Get in touch
         </h1>
@@ -53,16 +48,16 @@ export default function ContactPage() {
         <div className="mb-8 fade-up fade-delay-3">
           <a
             href="mailto:george.johnson@outlook.co.nz?subject=CV%20request"
-            className="flex items-center gap-3 w-full p-4 border border-[var(--green-40)] rounded-lg bg-[var(--green-05)] hover:bg-[var(--green-10)] hover:border-[var(--green-70)] transition-colors group"
+            className="flex items-center gap-3 w-full p-4 border border-[var(--accent-40)] rounded-lg bg-[var(--accent-05)] hover:bg-[var(--accent-10)] hover:border-[var(--accent-70)] transition-colors group"
           >
-            <span className="text-[var(--green)]">
+            <span className="text-[var(--accent)]">
               <MailIcon />
             </span>
             <div>
-              <p className="text-sm font-semibold text-[var(--green)]">Request my CV</p>
+              <p className="text-sm font-semibold text-[var(--accent)]">Request my CV</p>
               <p className="text-xs text-[var(--text-muted)]">Email me for a current copy</p>
             </div>
-            <span className="ml-auto text-xs text-[var(--text-muted)] group-hover:text-[var(--green)] transition-colors">
+            <span className="ml-auto text-xs text-[var(--text-muted)] group-hover:text-[var(--accent)] transition-colors">
               ↗
             </span>
           </a>
@@ -72,7 +67,7 @@ export default function ContactPage() {
           {contactItems.map(({ label, value, href }) => (
             <div
               key={label}
-              className="flex items-center gap-4 sm:gap-6 p-4 border border-[var(--border)] rounded-lg bg-[var(--surface)] hover:border-[var(--green-40)] transition-colors"
+              className="flex items-center gap-4 sm:gap-6 p-4 border border-[var(--border)] rounded-lg bg-[var(--surface)] hover:border-[var(--accent-40)] transition-colors"
             >
               <span className="text-xs text-[var(--text-muted)] w-16 shrink-0">
                 {label}
@@ -82,7 +77,7 @@ export default function ContactPage() {
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="text-sm text-[var(--text-body)] hover:text-[var(--green)] transition-colors min-w-0 break-all"
+                  className="text-sm text-[var(--text-body)] hover:text-[var(--accent)] transition-colors min-w-0 break-all"
                 >
                   {value}
                 </a>

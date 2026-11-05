@@ -9,33 +9,19 @@ export default function Image() {
     (
       <div
         style={{
-          background: "#0a0a0a",
+          background: "#0b0f17",
           width: "100%",
           height: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          fontFamily: "monospace",
+          fontFamily: "sans-serif",
           position: "relative",
         }}
       >
-        {/* Subtle grid */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "linear-gradient(rgba(34,197,94,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(34,197,94,0.04) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-
-        {/* Terminal prompt */}
-        <div style={{ display: "flex", marginBottom: "24px", fontSize: "20px" }}>
-          <span style={{ color: "#64748b" }}>~/portfolio</span>
-          <span style={{ color: "#e2e8f0", marginLeft: "8px" }}> $ </span>
-          <span style={{ color: "#22c55e", marginLeft: "4px" }}>whoami</span>
+        <div style={{ display: "flex", fontSize: "22px", color: "#3b82f6", marginBottom: "20px" }}>
+          Mechatronics engineer · Christchurch, New Zealand
         </div>
 
         {/* Name */}
@@ -59,10 +45,10 @@ export default function Image() {
               key={tag}
               style={{
                 fontSize: "18px",
-                color: "#22c55e",
-                border: "1px solid #1a2332",
-                padding: "6px 14px",
-                borderRadius: "6px",
+                color: "#93c5fd",
+                background: "rgba(59,130,246,0.15)",
+                padding: "6px 16px",
+                borderRadius: "999px",
               }}
             >
               {tag}
