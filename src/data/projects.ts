@@ -260,7 +260,7 @@ export const projects: Project[] = [
         },
         {
           label: "Modes",
-          value: "Multi / sequence / test"
+          value: "3 modes"
         },
         {
           label: "Interface",
@@ -268,7 +268,7 @@ export const projects: Project[] = [
         },
         {
           label: "Analysis",
-          value: "Benchmarks + heatmaps"
+          value: "Heatmaps"
         }
       ]
     },
@@ -356,7 +356,7 @@ export const projects: Project[] = [
         },
         {
           label: "Interface",
-          value: "OLED + joystick"
+          value: "OLED UI"
         }
       ],
       images: [

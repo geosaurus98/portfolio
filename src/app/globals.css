@@ -9,8 +9,8 @@
 
 :root {
   --bg:           #0a0a0a;
-  --surface:      #0f0f0f;
-  --border:       #1a2332;
+  --surface:      #111317;
+  --border:       #263244;
   --text:         #f1f5f9;
   --text-body:    #e2e8f0;
   --text-2:       #94a3b8;
@@ -33,7 +33,7 @@
 [data-theme="light"] {
   --bg:           #f8fafc;
   --surface:      #ffffff;
-  --border:       #e2e8f0;
+  --border:       #d6dee8;
   --text:         #0f172a;
   --text-body:    #1e293b;
   --text-2:       #475569;

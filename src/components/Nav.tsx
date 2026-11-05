@@ -53,7 +53,7 @@ export default function Nav() {
               <Link
                 key={href}
                 href={href}
-                className={`text-sm font-mono transition-colors relative group ${
+                className={`text-sm transition-colors relative group ${
                   pathname === href
                     ? "text-[var(--green)]"
                     : "text-[var(--text-muted)] hover:text-[var(--text-body)]"
@@ -98,7 +98,7 @@ export default function Nav() {
               <Link
                 key={href}
                 href={href}
-                className={`font-mono text-sm py-3 px-2 rounded transition-colors ${
+                className={`text-sm py-3 px-2 rounded transition-colors ${
                   pathname === href
                     ? "text-[var(--green)] bg-[var(--green-05)]"
                     : "text-[var(--text-muted)] hover:text-[var(--text-body)] hover:bg-[var(--border)]"
