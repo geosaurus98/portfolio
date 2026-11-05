@@ -68,7 +68,7 @@ function ProjectCard({ project }: { project: Project }) {
               {project.title}
             </h2>
             {project.subtitle && (
-              <p className="font-mono text-xs text-[var(--green)] mt-0.5">{project.subtitle}</p>
+              <p className="text-xs text-[var(--green)] mt-0.5">{project.subtitle}</p>
             )}
           </div>
           {project.github && (
@@ -87,18 +87,18 @@ function ProjectCard({ project }: { project: Project }) {
             {project.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="font-mono text-xs px-2 py-0.5 bg-[var(--tag-bg)] text-[var(--tag-text)] rounded"
+                className="text-xs px-2 py-0.5 bg-[var(--tag-bg)] text-[var(--tag-text)] rounded"
               >
                 {tag}
               </span>
             ))}
             {project.tags.length > 3 && (
-              <span className="font-mono text-xs px-2 py-0.5 text-[var(--text-muted)]">
+              <span className="text-xs px-2 py-0.5 text-[var(--text-muted)]">
                 +{project.tags.length - 3}
               </span>
             )}
           </div>
-          <span className="font-mono text-xs text-[var(--text-muted)] group-hover:text-[var(--green)] transition-colors shrink-0 ml-2">
+          <span className="text-xs text-[var(--text-muted)] group-hover:text-[var(--green)] transition-colors shrink-0 ml-2">
             View →
           </span>
         </div>

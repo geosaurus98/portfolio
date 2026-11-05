@@ -59,10 +59,10 @@ export default function ContactPage() {
               <MailIcon />
             </span>
             <div>
-              <p className="font-mono text-sm font-semibold text-[var(--green)]">Request my CV</p>
-              <p className="font-mono text-xs text-[var(--text-muted)]">Email me for a current copy</p>
+              <p className="text-sm font-semibold text-[var(--green)]">Request my CV</p>
+              <p className="text-xs text-[var(--text-muted)]">Email me for a current copy</p>
             </div>
-            <span className="ml-auto font-mono text-xs text-[var(--text-muted)] group-hover:text-[var(--green)] transition-colors">
+            <span className="ml-auto text-xs text-[var(--text-muted)] group-hover:text-[var(--green)] transition-colors">
               ↗
             </span>
           </a>
@@ -74,7 +74,7 @@ export default function ContactPage() {
               key={label}
               className="flex items-center gap-4 sm:gap-6 p-4 border border-[var(--border)] rounded-lg bg-[var(--surface)] hover:border-[var(--green-40)] transition-colors"
             >
-              <span className="font-mono text-xs text-[var(--text-muted)] w-16 shrink-0">
+              <span className="text-xs text-[var(--text-muted)] w-16 shrink-0">
                 {label}
               </span>
               {href ? (
@@ -82,12 +82,12 @@ export default function ContactPage() {
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="font-mono text-sm text-[var(--text-body)] hover:text-[var(--green)] transition-colors min-w-0 break-all"
+                  className="text-sm text-[var(--text-body)] hover:text-[var(--green)] transition-colors min-w-0 break-all"
                 >
                   {value}
                 </a>
               ) : (
-                <span className="font-mono text-sm text-[var(--text-2)]">{value}</span>
+                <span className="text-sm text-[var(--text-2)]">{value}</span>
               )}
             </div>
           ))}
