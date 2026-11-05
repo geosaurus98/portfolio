@@ -380,6 +380,11 @@ export const projects: Project[] = [
       ],
       images: [
         {
+          src: "/projects/step-counter/follow-up-tiva.webp",
+          alt: "TI Tiva C LaunchPad with an Orbit BoosterPack whose OLED screen reads Timer: Paused, El 0:08.009, Lap 0:00.000",
+          caption: "Follow-up project: a stopwatch with lap times on a TI Tiva C LaunchPad and Orbit BoosterPack"
+        },
+        {
           src: "/projects/step-counter/module-dependency.jpg",
           alt: "Diagram of firmware modules and the dependencies between them",
           caption: "Firmware module dependency diagram"

@@ -112,6 +112,11 @@ export default async function ProjectPage({
                           {img.caption}
                         </figcaption>
                       )}
+                    </figure>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {detail.contribution && (
               <section className="fade-up fade-delay-2">
@@ -173,12 +178,6 @@ export default async function ProjectPage({
                     {detail.video.caption}
                   </p>
                 )}
-              </section>
-            )}
-
-                    </figure>
-                  ))}
-                </div>
               </section>
             )}
 
